@@ -8,6 +8,11 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        "primary": "#171C19",
+        "secondary": "#FFFFFF",
+        "accent": "#0673BA",
+      },
     },
   },
   plugins: [],
