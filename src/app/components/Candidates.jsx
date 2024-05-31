@@ -4,6 +4,7 @@ const Candidates = () => {
     const [candidates, setCandidates] = useState([
         { name: 'Blank', votes: 0 },
     ]);
+    const [newCandidateName, setNewCandidateName] = useState('');
 
 
     const addVote = (index) => {
@@ -20,11 +21,22 @@ const Candidates = () => {
         setCandidates(newCandidates);
     };
 
+    const handleNewCandidateChange = (e) => {
+        setNewCandidateName(e.target.value);
+    };
+
+    const addNewCandidate = () => {
+        if (newCandidateName.trim() !== '') {
+            setCandidates([...candidates, { name: newCandidateName, votes: 0 }]);
+            setNewCandidateName('');
+        }
+    };
+
 
     return (
         <section className="mt-10">
             <h2 className="text-2xl font-semibold mb-3">Candidates</h2>
-            <ul>
+            <ul className="mb-4">
                 {candidates.map((candidate, index) => (
                     <li key={index} className="flex justify-center items-center mb-2 text-xl">
                         <p className="mr-5">{candidate.name}</p>
@@ -44,6 +56,21 @@ const Candidates = () => {
                     </li>
                 ))}
             </ul>
+            <div>
+                <input
+                    type="text"
+                    value={newCandidateName}
+                    onChange={handleNewCandidateChange}
+                    placeholder="New candidate name"
+                    className="border p-2 mr-2 text-primary"
+                />
+                <button
+                    onClick={addNewCandidate}
+                    className="bg-accent text-secondary px-4 py-2 rounded"
+                >
+                    Add Candidate
+                </button>
+            </div>
         </section>
     )
 }
