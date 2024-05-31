@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import VoteSetup from "./components/VoteSetup";
 import Candidates from "./components/Candidates";
 import VoteSummary from "./components/VoteSummary";
+import ManageVote from "./components/ManageVote";
 import Footer from "./components/Footer";
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
         <VoteSetup voteTitle={voteTitle} setVoteTitle={setVoteTitle} />
         <Candidates />
         <VoteSummary />
+        <ManageVote />
       </main>
       <Footer />
     </div>
