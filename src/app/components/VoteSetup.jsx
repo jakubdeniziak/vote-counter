@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
 
-const VoteSetup = ({ voteTitle, setVoteTitle }) => {
+const VoteSetup = ({ voteTitle, setVoteTitle, numberOfPeople, setNumberOfPeople, percentageToWin, setPercentageNeededToWin }) => {
     const [inputValue, setInputValue] = useState(voteTitle);
-    const [numberOfPeople, setNumberOfPeople] = useState('');
-    const [percentageToWin, setPercentageToWin] = useState('');
     const [votesNeeded, setVotesNeeded] = useState(0);
 
 
@@ -20,7 +18,7 @@ const VoteSetup = ({ voteTitle, setVoteTitle }) => {
     };
 
     const handlePercentageChange = (e) => {
-        setPercentageToWin(e.target.value);
+        setPercentageNeededToWin(e.target.value);
     };
 
 

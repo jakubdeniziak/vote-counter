@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Candidates = () => {
+const Candidates = ({ votesNeededToWin }) => {
     const [candidates, setCandidates] = useState([
         { name: 'Blank', votes: 0 },
     ]);
@@ -39,7 +39,9 @@ const Candidates = () => {
             <ul className="mb-4">
                 {candidates.map((candidate, index) => (
                     <li key={index} className="flex justify-center items-center mb-2 text-xl">
-                        <p className="mr-5">{candidate.name}</p>
+                        <p className={`mr-5 ${candidate.votes >= votesNeededToWin ? 'text-green-500' : ''}`}>
+                            {candidate.name}
+                        </p>
                         <button
                             onClick={() => addVote(index)}
                             className="bg-green-500 text-secondary px-2 py-1 rounded mr-2"
