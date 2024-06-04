@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 
-const Candidates = ({ votesNeededToWin, numPeople }) => {
+const Candidates = ({ votesNeededToWin, numPeople, totalVotes, setTotalVotes }) => {
     const [candidates, setCandidates] = useState([
         { name: 'INVALID VOTE', votes: 0 },
         { name: 'Blank', votes: 0 },
     ]);
     const [newCandidateName, setNewCandidateName] = useState('');
-    const [totalVotes, setTotalVotes] = useState(0);
     const [warning, setWarning] = useState('');
 
 
@@ -20,6 +19,7 @@ const Candidates = ({ votesNeededToWin, numPeople }) => {
             setWarning('');
         }
     }, [candidates, numPeople]);
+
 
     const addVote = (index) => {
         if (totalVotes < numPeople) {

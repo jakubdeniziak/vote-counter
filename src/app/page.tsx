@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 
 export default function Home() {
   const [voteTitle, setVoteTitle] = useState('');
+  const [totalVotes, setTotalVotes] = useState(0);
   const [numberOfPeople, setNumberOfPeople] = useState(null);
   const [percentageNeededToWin, setPercentageNeededToWin] = useState(null);
 
@@ -38,8 +39,13 @@ export default function Home() {
         <Candidates
           votesNeededToWin={votesNeededToWin}
           numPeople={numberOfPeople}
+          totalVotes={totalVotes}
+          setTotalVotes={setTotalVotes}
         />
-        <VoteSummary />
+        <VoteSummary
+          totalVotes={totalVotes}
+          numPeople={numberOfPeople}
+        />
         <ManageVote />
       </main>
       <Footer />
