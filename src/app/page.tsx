@@ -13,6 +13,10 @@ export default function Home() {
   const [totalVotes, setTotalVotes] = useState(0);
   const [numberOfPeople, setNumberOfPeople] = useState(null);
   const [percentageNeededToWin, setPercentageNeededToWin] = useState(null);
+  const [candidates, setCandidates] = useState([
+    { name: 'INVALID VOTE', votes: 0 },
+    { name: 'Blank', votes: 0 },
+]);
 
   const calculateVotesNeededToWin = () => {
     if (numberOfPeople && percentageNeededToWin) {
@@ -41,12 +45,19 @@ export default function Home() {
           numPeople={numberOfPeople}
           totalVotes={totalVotes}
           setTotalVotes={setTotalVotes}
+          candidates={candidates}
+          setCandidates={setCandidates}
         />
         <VoteSummary
           totalVotes={totalVotes}
           numPeople={numberOfPeople}
         />
-        <ManageVote />
+        <ManageVote
+          voteTitle={voteTitle}
+          numberOfPeople={numberOfPeople}
+          percentageNeededToWin={percentageNeededToWin}
+          candidates={candidates}
+        />
       </main>
       <Footer />
     </div>

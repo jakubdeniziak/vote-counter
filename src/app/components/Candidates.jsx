@@ -1,10 +1,7 @@
 import { useState, useEffect } from "react";
 
-const Candidates = ({ votesNeededToWin, numPeople, totalVotes, setTotalVotes }) => {
-    const [candidates, setCandidates] = useState([
-        { name: 'INVALID VOTE', votes: 0 },
-        { name: 'Blank', votes: 0 },
-    ]);
+const Candidates = ({ votesNeededToWin, numPeople, totalVotes, setTotalVotes, candidates, setCandidates }) => {
+    
     const [newCandidateName, setNewCandidateName] = useState('');
     const [warning, setWarning] = useState('');
 
