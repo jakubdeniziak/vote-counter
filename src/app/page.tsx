@@ -37,6 +37,7 @@ export default function Home() {
         />
         <Candidates
           votesNeededToWin={votesNeededToWin}
+          numPeople={numberOfPeople}
         />
         <VoteSummary />
         <ManageVote />

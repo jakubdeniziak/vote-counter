@@ -1,17 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const Candidates = ({ votesNeededToWin }) => {
+const Candidates = ({ votesNeededToWin, numPeople }) => {
     const [candidates, setCandidates] = useState([
         { name: 'INVALID VOTE', votes: 0 },
         { name: 'Blank', votes: 0 },
     ]);
     const [newCandidateName, setNewCandidateName] = useState('');
+    const [totalVotes, setTotalVotes] = useState(0);
+    const [warning, setWarning] = useState('');
 
+
+    useEffect(() => {
+        const totalCandidateVotes = candidates.reduce((sum, candidate) => sum + candidate.votes, 0);
+        setTotalVotes(totalCandidateVotes);
+
+        if (totalCandidateVotes > numPeople) {
+            setWarning("There should be no more votes left");
+        } else {
+            setWarning('');
+        }
+    }, [candidates, numPeople]);
 
     const addVote = (index) => {
-        const newCandidates = [...candidates];
-        newCandidates[index].votes += 1;
-        setCandidates(newCandidates);
+        if (totalVotes < numPeople) {
+            const newCandidates = [...candidates];
+            newCandidates[index].votes += 1;
+            setCandidates(newCandidates);
+        } else {
+            setWarning("There should be no more votes left");
+        }
     };
 
     const removeVote = (index) => {
@@ -37,6 +54,9 @@ const Candidates = ({ votesNeededToWin }) => {
     return (
         <section className="mt-10">
             <h2 className="text-2xl font-semibold mb-3">Candidates</h2>
+            <p>
+                {warning && <p className="text-red-500 mb-3">{warning}</p>}
+            </p>
             <div className="mb-4">
                 <input
                     type="text"
