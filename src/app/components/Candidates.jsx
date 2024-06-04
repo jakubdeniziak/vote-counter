@@ -2,6 +2,7 @@ import { useState } from "react";
 
 const Candidates = ({ votesNeededToWin }) => {
     const [candidates, setCandidates] = useState([
+        { name: 'INVALID VOTE', votes: 0 },
         { name: 'Blank', votes: 0 },
     ]);
     const [newCandidateName, setNewCandidateName] = useState('');
