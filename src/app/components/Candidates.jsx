@@ -37,7 +37,22 @@ const Candidates = ({ votesNeededToWin }) => {
     return (
         <section className="mt-10">
             <h2 className="text-2xl font-semibold mb-3">Candidates</h2>
-            <ul className="mb-4">
+            <div className="mb-4">
+                <input
+                    type="text"
+                    value={newCandidateName}
+                    onChange={handleNewCandidateChange}
+                    placeholder="New candidate name"
+                    className="border p-2 mr-2 text-primary"
+                />
+                <button
+                    onClick={addNewCandidate}
+                    className="bg-accent text-secondary px-4 py-2 rounded"
+                >
+                    Add Candidate
+                </button>
+            </div>
+            <ul>
                 {candidates.map((candidate, index) => (
                     <li key={index} className="flex justify-center items-center mb-2 text-xl">
                         <p className={`mr-5 ${candidate.votes >= votesNeededToWin ? 'text-green-500' : ''}`}>
@@ -59,21 +74,6 @@ const Candidates = ({ votesNeededToWin }) => {
                     </li>
                 ))}
             </ul>
-            <div>
-                <input
-                    type="text"
-                    value={newCandidateName}
-                    onChange={handleNewCandidateChange}
-                    placeholder="New candidate name"
-                    className="border p-2 mr-2 text-primary"
-                />
-                <button
-                    onClick={addNewCandidate}
-                    className="bg-accent text-secondary px-4 py-2 rounded"
-                >
-                    Add Candidate
-                </button>
-            </div>
         </section>
     )
 }
