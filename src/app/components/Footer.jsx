@@ -1,6 +1,6 @@
 const Footer = () => {
     return (
-        <footer className="footer border-t fixed bottom-0 w-screen">
+        <footer className="footer border-t border-accent fixed bottom-0 w-screen">
             <p className="p-3">&copy; 2024 Jakub Deniziak</p>
         </footer>
     )

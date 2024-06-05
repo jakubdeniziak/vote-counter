@@ -14,6 +14,7 @@ export default function Home() {
   const [numberOfPeople, setNumberOfPeople] = useState(null);
   const [percentageNeededToWin, setPercentageNeededToWin] = useState(null);
   const [isSaved, setIsSaved] = useState(false);
+  const [theme, setTheme] = useState('dark');
   const [candidates, setCandidates] = useState([
     { name: 'INVALID VOTE', votes: 0 },
     { name: 'Blank', votes: 0 },
@@ -26,6 +27,10 @@ export default function Home() {
   };
 
   const votesNeededToWin = calculateVotesNeededToWin()
+
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  };
 
   const resetVote = () => {
     setVoteTitle('');
@@ -53,10 +58,21 @@ export default function Home() {
     };
   }, [isSaved]);
 
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [theme]);
+
 
   return (
-    <div className="h-screen text-center">
-      <Header />
+    <div className={`h-screen text-center ${theme}`}>
+      <Header
+        toggleTheme={toggleTheme}
+        currentTheme={theme}
+      />
       <main>
         <h2 className='text-3xl'>{voteTitle}</h2>
         <VoteSetup
