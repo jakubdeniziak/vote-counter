@@ -1,7 +1,6 @@
 import { useState } from "react";
 
-const ManageVote = ({ voteTitle, numberOfPeople, percentageNeededToWin, candidates, resetVote }) => {
-    const [isSaved, setIsSaved] = useState(false);
+const ManageVote = ({ voteTitle, numberOfPeople, percentageNeededToWin, candidates, resetVote, isSaved, setIsSaved }) => {
     const [showWarning, setShowWarning] = useState(false);
 
     

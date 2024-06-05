@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from "./components/Header";
 import VoteSetup from "./components/VoteSetup";
 import Candidates from "./components/Candidates";
@@ -13,6 +13,7 @@ export default function Home() {
   const [totalVotes, setTotalVotes] = useState(0);
   const [numberOfPeople, setNumberOfPeople] = useState(null);
   const [percentageNeededToWin, setPercentageNeededToWin] = useState(null);
+  const [isSaved, setIsSaved] = useState(false);
   const [candidates, setCandidates] = useState([
     { name: 'INVALID VOTE', votes: 0 },
     { name: 'Blank', votes: 0 },
@@ -36,6 +37,21 @@ export default function Home() {
       { name: 'Blank', votes: 0 },
     ]);
   };
+
+  useEffect(() => {
+    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+      if (!isSaved) {
+        event.preventDefault();
+        event.returnValue = '';
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [isSaved]);
 
 
   return (
@@ -69,6 +85,8 @@ export default function Home() {
           percentageNeededToWin={percentageNeededToWin}
           candidates={candidates}
           resetVote={resetVote}
+          isSaved={isSaved}
+          setIsSaved={setIsSaved}
         />
       </main>
       <Footer />
