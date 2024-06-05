@@ -16,7 +16,7 @@ export default function Home() {
   const [candidates, setCandidates] = useState([
     { name: 'INVALID VOTE', votes: 0 },
     { name: 'Blank', votes: 0 },
-]);
+  ]);
 
   const calculateVotesNeededToWin = () => {
     if (numberOfPeople && percentageNeededToWin) {
@@ -25,6 +25,17 @@ export default function Home() {
   };
 
   const votesNeededToWin = calculateVotesNeededToWin()
+
+  const resetVote = () => {
+    setVoteTitle('');
+    setTotalVotes(0);
+    setNumberOfPeople(null);
+    setPercentageNeededToWin(null);
+    setCandidates([
+      { name: 'INVALID VOTE', votes: 0 },
+      { name: 'Blank', votes: 0 },
+    ]);
+  };
 
 
   return (
@@ -57,6 +68,7 @@ export default function Home() {
           numberOfPeople={numberOfPeople}
           percentageNeededToWin={percentageNeededToWin}
           candidates={candidates}
+          resetVote={resetVote}
         />
       </main>
       <Footer />
