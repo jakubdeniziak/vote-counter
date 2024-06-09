@@ -1,4 +1,17 @@
-const VoteSummary = ({ totalVotes, numPeople }) => {
+import * as React from 'react';
+import { PieChart } from '@mui/x-charts/PieChart';
+
+const VoteSummary = ({ totalVotes, numPeople, candidates }) => {
+    const showPieChart = totalVotes > 0;
+    const pieData = {
+        data: candidates.map((candidate, index) => ({
+            id: index,
+            value: candidate.votes,
+            label: candidate.name
+        }))
+    };
+
+
     return (
         <section className="mt-10">
             <h2 className="text-2xl font-semibold mb-3">Summary</h2>
@@ -6,6 +19,15 @@ const VoteSummary = ({ totalVotes, numPeople }) => {
                 <p className="text-lg font-semibold">Votes counted: {totalVotes}</p>
                 <p className="text-lg font-semibold">Votes left: {numPeople - totalVotes}</p>
             </div>
+            { showPieChart &&
+            <div className="mt-5 w-1/5 mx-auto">
+                <PieChart
+                    series={[pieData]}
+                    width={500}
+                    height={200}
+                />
+            </div> 
+            }
         </section>
     )
 }

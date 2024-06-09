@@ -94,6 +94,7 @@ export default function Home() {
         <VoteSummary
           totalVotes={totalVotes}
           numPeople={numberOfPeople}
+          candidates={candidates}
         />
         <ManageVote
           voteTitle={voteTitle}
