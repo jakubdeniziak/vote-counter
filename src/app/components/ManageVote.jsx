@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const ManageVote = ({ voteTitle, numberOfPeople, percentageNeededToWin, candidates, resetVote, isSaved, setIsSaved }) => {
+const ManageVote = ({ voteTitle, numberOfPeople, percentageNeededToWin, candidates, resetVote, isSaved, setIsSaved, setIsSetUp }) => {
     const [showWarning, setShowWarning] = useState(false);
 
     
@@ -35,6 +35,7 @@ const ManageVote = ({ voteTitle, numberOfPeople, percentageNeededToWin, candidat
             resetVote();
             setIsSaved(false);
             setShowWarning(false);
+            setIsSetUp(false);
         }
     };
 

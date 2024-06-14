@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
-const VoteSetup = ({ voteTitle, setVoteTitle, numberOfPeople, setNumberOfPeople, percentageToWin, setPercentageNeededToWin }) => {
+
+const VoteSetup = ({ voteTitle, setVoteTitle, numberOfPeople, setNumberOfPeople, percentageToWin, setPercentageNeededToWin, setIsSetUp, resetVote }) => {
     const [inputValue, setInputValue] = useState(voteTitle);
     const [votesNeeded, setVotesNeeded] = useState(0);
 
@@ -67,6 +68,20 @@ const VoteSetup = ({ voteTitle, setVoteTitle, numberOfPeople, setNumberOfPeople,
             <p className="text-lg">
                 Votes needed to win: {votesNeeded}
             </p>
+            <div>
+                <button
+                    onClick={resetVote}
+                    className="bg-accent2 text-secondary p-2 rounded mr-8"
+                >
+                    Reset
+                </button>
+                <button
+                    onClick={setIsSetUp}
+                    className="bg-accent text-secondary p-2 rounded"
+                >
+                    Accept
+                </button>
+            </div>
         </section>
     )
 }
