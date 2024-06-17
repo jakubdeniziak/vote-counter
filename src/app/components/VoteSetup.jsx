@@ -1,9 +1,7 @@
-import { useState, useEffect } from 'react';
-
+import { useState } from 'react';
 
 const VoteSetup = ({ voteTitle, setVoteTitle, numberOfPeople, setNumberOfPeople, percentageToWin, setPercentageNeededToWin, setIsSetUp, resetVote, candidates, setCandidates }) => {
     const [inputValue, setInputValue] = useState(voteTitle);
-    const [votesNeeded, setVotesNeeded] = useState(0);
     const [newCandidateName, setNewCandidateName] = useState('');
 
 
@@ -49,16 +47,6 @@ const VoteSetup = ({ voteTitle, setVoteTitle, numberOfPeople, setNumberOfPeople,
     };
 
 
-    useEffect(() => {
-        if (numberOfPeople && percentageToWin) {
-            const calculatedVotes = Math.ceil((numberOfPeople * percentageToWin) / 100);
-            setVotesNeeded(calculatedVotes);
-        } else {
-            setVotesNeeded(0);
-        }
-    },[numberOfPeople, percentageToWin]);
-
-
     return (
         <div>
             <section className="text-center mt-10">
@@ -93,9 +81,6 @@ const VoteSetup = ({ voteTitle, setVoteTitle, numberOfPeople, setNumberOfPeople,
                             className="text-primary border p-2 mr-2 w-80 mb-2"
                     />
                 </div>
-                <p className="text-lg mt-2">
-                    Votes needed to win: {votesNeeded}
-                </p>
             </section>
             <section className="mt-8">
                 <h2 className="text-2xl font-semibold mb-3">Candidates</h2>

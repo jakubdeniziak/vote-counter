@@ -102,6 +102,7 @@ export default function Home() {
             <VoteSummary
               totalVotes={totalVotes}
               numPeople={numberOfPeople}
+              votesToWin={votesNeededToWin}
               candidates={candidates}
               theme={theme}
             />
