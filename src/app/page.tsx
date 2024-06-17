@@ -85,6 +85,8 @@ export default function Home() {
             setPercentageNeededToWin={setPercentageNeededToWin}
             setIsSetUp={setIsSetUp}
             resetVote={resetVote}
+            candidates={candidates}
+            setCandidates={setCandidates}
           />
           :
           <div>
