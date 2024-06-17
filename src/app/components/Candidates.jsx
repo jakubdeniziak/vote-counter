@@ -41,26 +41,26 @@ const Candidates = ({ votesNeededToWin, numPeople, totalVotes, setTotalVotes, ca
         <section className="mt-5">
             <h2 className="text-2xl font-semibold mb-3">Candidates</h2>
             <p>
-                {warning && <p className="text-red-500 mb-3">{warning}</p>}
+                {warning && <p className="text-accent2 mb-3">{warning}</p>}
             </p>
             <ul>
                 {candidates.map((candidate, index) => (
                     <li key={index} className="flex justify-center items-center mb-2 text-xl">
-                        <p className={`mr-5 ${candidate.votes >= votesNeededToWin ? 'text-green-500' : ''}`}>
+                        <p className={`mr-5 ${candidate.votes >= votesNeededToWin ? 'text-accent' : ''}`}>
                             {candidate.name}
                         </p>
                         <button
-                            onClick={() => addVote(index)}
-                            className="bg-green-500 text-secondary px-2 py-1 rounded mr-2"
-                        >
-                            +
-                        </button>
-                        <p className="mr-2">{candidate.votes}</p>
-                        <button
                             onClick={() => removeVote(index)}
-                            className="bg-red-500 text-secondary px-2 py-1 rounded"
+                            className="bg-accent2 text-secondary px-2 py-1 rounded"
                         >
                             -
+                        </button>
+                        <p className="ml-2 mr-2">{candidate.votes}</p>
+                        <button
+                            onClick={() => addVote(index)}
+                            className="bg-accent text-secondary px-2 py-1 rounded"
+                        >
+                            +
                         </button>
                     </li>
                 ))}
