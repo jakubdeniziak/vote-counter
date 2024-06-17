@@ -36,61 +36,37 @@ const Candidates = ({ votesNeededToWin, numPeople, totalVotes, setTotalVotes, ca
         setCandidates(newCandidates);
     };
 
-    const handleNewCandidateChange = (e) => {
-        setNewCandidateName(e.target.value);
-    };
-
-    const addNewCandidate = () => {
-        if (newCandidateName.trim() !== '') {
-            setCandidates([...candidates, { name: newCandidateName, votes: 0 }]);
-            setNewCandidateName('');
-        }
-    };
-
 
     return (
-        <section className="mt-10">
+        <section className="mt-5">
             <h2 className="text-2xl font-semibold mb-3">Candidates</h2>
             <p>
-                {warning && <p className="text-red-500 mb-3">{warning}</p>}
+                {warning && <p className="text-accent2 mb-3">{warning}</p>}
             </p>
-            <div className="mb-4">
-                <input
-                    type="text"
-                    value={newCandidateName}
-                    onChange={handleNewCandidateChange}
-                    placeholder="New candidate name"
-                    className="border p-2 mr-2 text-primary"
-                />
-                <button
-                    onClick={addNewCandidate}
-                    className="bg-accent text-secondary px-4 py-2 rounded"
-                >
-                    Add Candidate
-                </button>
-            </div>
-            <ul>
+            <div className="mt-5">
                 {candidates.map((candidate, index) => (
-                    <li key={index} className="flex justify-center items-center mb-2 text-xl">
-                        <p className={`mr-5 ${candidate.votes >= votesNeededToWin ? 'text-green-500' : ''}`}>
+                    <div key={index} className="flex flex-row justify-center mb-2">
+                        <p className={`grid place-items-center mr-2 ml-2 w-48 ${candidate.votes >= votesNeededToWin ? 'text-accent font-bold' : ''}`}>
                             {candidate.name}
                         </p>
                         <button
-                            onClick={() => addVote(index)}
-                            className="bg-green-500 text-secondary px-2 py-1 rounded mr-2"
-                        >
-                            +
-                        </button>
-                        <p className="mr-2">{candidate.votes}</p>
-                        <button
                             onClick={() => removeVote(index)}
-                            className="bg-red-500 text-secondary px-2 py-1 rounded"
+                            className="bg-accent2 text-secondary px-4 py-1 rounded"
                         >
                             -
                         </button>
-                    </li>
+                        <p className="grid place-items-center mr-2 ml-2 w-8">
+                            {candidate.votes}
+                        </p>
+                        <button
+                            onClick={() => addVote(index)}
+                            className="bg-accent text-secondary px-4 py-1 rounded"
+                        >
+                            +
+                        </button>
+                    </div>
                 ))}
-            </ul>
+            </div>
         </section>
     )
 }

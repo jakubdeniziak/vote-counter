@@ -3,22 +3,6 @@
 @tailwind utilities;
 
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
-
 .light {
   --bg-color: theme(colors.secondary);
   --text-color: theme(colors.primary);
@@ -28,6 +12,7 @@ body {
   --bg-color: theme(colors.primary);
   --text-color: theme(colors.secondary);
 }
+
 
 html {
   background-color: var(--bg-color);

@@ -1,15 +1,31 @@
+import Image from "next/image"
+
+import Moon from "@/public/images/moon.svg"
+import Sun from "@/public/images/sun.svg"
+
+
 const Header = ({ toggleTheme, currentTheme }) => {
     return (
-        <header className="header w-screen">
-            <h1 className="text-5xl p-5">Vote counter</h1>
+        <header className="header relative border-b border-accent">
+            <h1 className="text-5xl p-5">Vote Counter</h1>
             <button 
                 onClick={toggleTheme}
-                className="bg-accent text-white px-4 py-2 rounded mb-3"
+                className="absolute bottom-4 right-5 w-10"
             >
-                Switch to {currentTheme === 'dark' ? 'Light' : 'Dark'} Theme
+                {currentTheme === "dark" ?
+                    <Image
+                        src={Sun}
+                        alt="Turn on light mode"
+                    />
+                    :
+                    <Image
+                        src={Moon}
+                        alt="Turn on dark mode"
+                    />
+                }
             </button>
         </header>
-    )
+    );
 }
 
-export default Header
+export default Header;

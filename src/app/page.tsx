@@ -9,6 +9,7 @@ import ManageVote from "./components/ManageVote";
 import Footer from "./components/Footer";
 
 export default function Home() {
+  const [isSetUp, setIsSetUp] = useState(false);
   const [voteTitle, setVoteTitle] = useState('');
   const [totalVotes, setTotalVotes] = useState(0);
   const [numberOfPeople, setNumberOfPeople] = useState(null);
@@ -68,45 +69,59 @@ export default function Home() {
 
 
   return (
-    <div className={`h-screen text-center ${theme}`}>
+    <div className={`text-center ${theme}`}>
       <Header
         toggleTheme={toggleTheme}
         currentTheme={theme}
       />
-      <main>
-        <h2 className='text-3xl'>{voteTitle}</h2>
-        <VoteSetup
-          voteTitle={voteTitle}
-          setVoteTitle={setVoteTitle}
-          numberOfPeople={numberOfPeople}
-          setNumberOfPeople={setNumberOfPeople}
-          percentageToWin={percentageNeededToWin}
-          setPercentageNeededToWin={setPercentageNeededToWin}
-        />
-        <Candidates
-          votesNeededToWin={votesNeededToWin}
-          numPeople={numberOfPeople}
-          totalVotes={totalVotes}
-          setTotalVotes={setTotalVotes}
-          candidates={candidates}
-          setCandidates={setCandidates}
-        />
-        <VoteSummary
-          totalVotes={totalVotes}
-          numPeople={numberOfPeople}
-          candidates={candidates}
-        />
-        <ManageVote
-          voteTitle={voteTitle}
-          numberOfPeople={numberOfPeople}
-          percentageNeededToWin={percentageNeededToWin}
-          candidates={candidates}
-          resetVote={resetVote}
-          isSaved={isSaved}
-          setIsSaved={setIsSaved}
-        />
+      <main className="mb-24">
+        {isSetUp === false ?
+          <VoteSetup
+            voteTitle={voteTitle}
+            setVoteTitle={setVoteTitle}
+            numberOfPeople={numberOfPeople}
+            setNumberOfPeople={setNumberOfPeople}
+            percentageToWin={percentageNeededToWin}
+            setPercentageNeededToWin={setPercentageNeededToWin}
+            setIsSetUp={setIsSetUp}
+            resetVote={resetVote}
+            candidates={candidates}
+            setCandidates={setCandidates}
+          />
+          :
+          <div>
+            <h2 className='text-3xl mt-5'>{voteTitle}</h2>
+            <Candidates
+              votesNeededToWin={votesNeededToWin}
+              numPeople={numberOfPeople}
+              totalVotes={totalVotes}
+              setTotalVotes={setTotalVotes}
+              candidates={candidates}
+              setCandidates={setCandidates}
+            />
+            <VoteSummary
+              totalVotes={totalVotes}
+              numPeople={numberOfPeople}
+              votesToWin={votesNeededToWin}
+              candidates={candidates}
+              theme={theme}
+            />
+            <ManageVote
+              voteTitle={voteTitle}
+              numberOfPeople={numberOfPeople}
+              percentageNeededToWin={percentageNeededToWin}
+              candidates={candidates}
+              resetVote={resetVote}
+              isSaved={isSaved}
+              setIsSaved={setIsSaved}
+              setIsSetUp={setIsSetUp}
+            />
+          </div>
+        }
       </main>
-      <Footer />
+      <Footer
+        theme={theme}
+      />
     </div>
   );
 }

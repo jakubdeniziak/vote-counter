@@ -1,17 +1,25 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-const VoteSetup = ({ voteTitle, setVoteTitle, numberOfPeople, setNumberOfPeople, percentageToWin, setPercentageNeededToWin }) => {
+const VoteSetup = ({ voteTitle, setVoteTitle, numberOfPeople, setNumberOfPeople, percentageToWin, setPercentageNeededToWin, setIsSetUp, resetVote, candidates, setCandidates }) => {
     const [inputValue, setInputValue] = useState(voteTitle);
-    const [votesNeeded, setVotesNeeded] = useState(0);
+    const [newCandidateName, setNewCandidateName] = useState('');
 
 
     const handleInputChange = (e) => {
         setInputValue(e.target.value);
     };
 
-    const handleTitleChange = () => {
+    const handleVoteSetUp = () => {
         setVoteTitle(inputValue);
+        setIsSetUp(true);
     };
+
+    const handleVoteReset = () => {
+        resetVote();
+        setInputValue('');
+        setNumberOfPeople('');
+        setPercentageNeededToWin('');
+    }
 
     const handleNumberOfPeopleChange = (e) => {
         setNumberOfPeople(e.target.value);
@@ -21,53 +29,110 @@ const VoteSetup = ({ voteTitle, setVoteTitle, numberOfPeople, setNumberOfPeople,
         setPercentageNeededToWin(e.target.value);
     };
 
+    const handleNewCandidateChange = (e) => {
+        setNewCandidateName(e.target.value);
+    };
 
-    useEffect(() => {
-        if (numberOfPeople && percentageToWin) {
-            const calculatedVotes = Math.ceil((numberOfPeople * percentageToWin) / 100);
-            setVotesNeeded(calculatedVotes);
-        } else {
-            setVotesNeeded(0);
+    const addNewCandidate = () => {
+        if (newCandidateName.trim() !== '') {
+            setCandidates([...candidates, { name: newCandidateName, votes: 0 }]);
+            setNewCandidateName('');
         }
-    },[numberOfPeople, percentageToWin]);
+    };
+
+    const removeCandidate = (index) => {
+        const newCandidates = [...candidates];
+        newCandidates.splice(index, 1);
+        setCandidates(newCandidates);
+    };
 
 
     return (
-        <section className="text-center mt-4">
-            <div className="mb-4">
-                <input
-                    type="text"
-                    value={inputValue}
-                    onChange={handleInputChange}
-                    placeholder="Enter vote title"
-                    className="text-primary border p-2 mr-2 w-80"
-                />
+        <div>
+            <section className="text-center mt-10">
+                <h2 className="text-2xl font-semibold mb-3">Basic info</h2>
+                <div className="mb-4">
+                    <label htmlFor="voteTitle" className="block text-xl mb-2">Vote Title</label>
+                    <input
+                        type="text"
+                        id="voteTitle"
+                        value={inputValue}
+                        onChange={handleInputChange}
+                        className="text-primary border p-2 mr-2 w-80"
+                    />
+                </div>
+                <div>
+                    <label htmlFor="numberOfPeople" className="block text-xl mb-2">Number of people eligible to vote</label>
+                    <input
+                        type="number"
+                        id="numberOfPeople"
+                        value={numberOfPeople}
+                        onChange={handleNumberOfPeopleChange}
+                        className="text-primary border p-2 mr-2 mb-4 w-80"
+                    />
+                </div>
+                <div>
+                    <label htmlFor="percentageToWin" className="block text-xl mb-2">Percentage of votes needed to win</label>
+                    <input
+                            type="number"
+                            id="percentageToWin"
+                            value={percentageToWin}
+                            onChange={handlePercentageChange}
+                            className="text-primary border p-2 mr-2 w-80 mb-2"
+                    />
+                </div>
+            </section>
+            <section className="mt-8">
+                <h2 className="text-2xl font-semibold mb-3">Candidates</h2>
+                <div className="mb-4">
+                    <input
+                        type="text"
+                        value={newCandidateName}
+                        onChange={handleNewCandidateChange}
+                        placeholder="New candidate name"
+                        className="border p-2 mr-2 text-primary"
+                    />
+                    <button
+                        onClick={addNewCandidate}
+                        className="bg-accent text-secondary px-4 py-2 rounded"
+                    >
+                        Add
+                    </button>
+                    <div className="mt-5">
+                        {candidates.map((candidate, index) => (
+                            <div key={index} className="flex flex-row justify-center mb-2">
+                                <input
+                                    type="text"
+                                    value={candidate.name}
+                                    readOnly
+                                    className="border p-2 mr-2 text-primary"
+                                />
+                                <button
+                                    onClick={() => removeCandidate(index)}
+                                    className="bg-accent2 text-secondary px-4 py-2 rounded"
+                                >
+                                    Remove
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+            <div className="mt-12">
                 <button
-                    onClick={handleTitleChange}
+                    onClick={handleVoteReset}
+                    className="bg-accent2 text-secondary p-2 rounded mr-8"
+                >
+                    Reset
+                </button>
+                <button
+                    onClick={handleVoteSetUp}
                     className="bg-accent text-secondary p-2 rounded"
                 >
-                    Set Title
+                    Accept
                 </button>
             </div>
-            <input
-                type="number"
-                value={numberOfPeople}
-                onChange={handleNumberOfPeopleChange}
-                placeholder="Number of people eligible to vote"
-                className="text-primary border p-2 mr-2 mb-4 w-80"
-            />
-            <br />
-            <input
-                    type="number"
-                    value={percentageToWin}
-                    onChange={handlePercentageChange}
-                    placeholder="Percentage of votes needed to win"
-                    className="text-primary border p-2 mr-2 w-80 mb-2"
-            />
-            <p className="text-lg">
-                Votes needed to win: {votesNeeded}
-            </p>
-        </section>
+      </div>
     )
 }
 
