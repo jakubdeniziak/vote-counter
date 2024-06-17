@@ -36,17 +36,6 @@ const Candidates = ({ votesNeededToWin, numPeople, totalVotes, setTotalVotes, ca
         setCandidates(newCandidates);
     };
 
-    const handleNewCandidateChange = (e) => {
-        setNewCandidateName(e.target.value);
-    };
-
-    const addNewCandidate = () => {
-        if (newCandidateName.trim() !== '') {
-            setCandidates([...candidates, { name: newCandidateName, votes: 0 }]);
-            setNewCandidateName('');
-        }
-    };
-
 
     return (
         <section className="mt-10">
@@ -54,21 +43,6 @@ const Candidates = ({ votesNeededToWin, numPeople, totalVotes, setTotalVotes, ca
             <p>
                 {warning && <p className="text-red-500 mb-3">{warning}</p>}
             </p>
-            <div className="mb-4">
-                <input
-                    type="text"
-                    value={newCandidateName}
-                    onChange={handleNewCandidateChange}
-                    placeholder="New candidate name"
-                    className="border p-2 mr-2 text-primary"
-                />
-                <button
-                    onClick={addNewCandidate}
-                    className="bg-accent text-secondary px-4 py-2 rounded"
-                >
-                    Add Candidate
-                </button>
-            </div>
             <ul>
                 {candidates.map((candidate, index) => (
                     <li key={index} className="flex justify-center items-center mb-2 text-xl">
