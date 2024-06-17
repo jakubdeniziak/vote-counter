@@ -69,12 +69,12 @@ export default function Home() {
 
 
   return (
-    <div className={`h-screen text-center ${theme}`}>
+    <div className={`text-center ${theme}`}>
       <Header
         toggleTheme={toggleTheme}
         currentTheme={theme}
       />
-      <main>
+      <main className="mb-24">
         {isSetUp === false ?
           <VoteSetup
             voteTitle={voteTitle}
@@ -118,7 +118,9 @@ export default function Home() {
           </div>
         }
       </main>
-      <Footer />
+      <Footer
+        theme={theme}
+      />
     </div>
   );
 }
