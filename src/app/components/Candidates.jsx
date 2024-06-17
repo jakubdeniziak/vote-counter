@@ -38,7 +38,7 @@ const Candidates = ({ votesNeededToWin, numPeople, totalVotes, setTotalVotes, ca
 
 
     return (
-        <section className="mt-10">
+        <section className="mt-5">
             <h2 className="text-2xl font-semibold mb-3">Candidates</h2>
             <p>
                 {warning && <p className="text-red-500 mb-3">{warning}</p>}

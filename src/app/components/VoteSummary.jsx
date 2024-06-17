@@ -13,7 +13,7 @@ const VoteSummary = ({ totalVotes, numPeople, candidates }) => {
 
 
     return (
-        <section className="mt-10">
+        <section className="mt-5">
             <h2 className="text-2xl font-semibold mb-3">Summary</h2>
             <div>
                 <p className="text-lg font-semibold">Votes counted: {totalVotes}</p>

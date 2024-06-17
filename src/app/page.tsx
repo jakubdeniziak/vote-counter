@@ -90,7 +90,7 @@ export default function Home() {
           />
           :
           <div>
-            <h2 className='text-3xl'>{voteTitle}</h2>
+            <h2 className='text-3xl mt-5'>{voteTitle}</h2>
             <Candidates
               votesNeededToWin={votesNeededToWin}
               numPeople={numberOfPeople}
