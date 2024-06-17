@@ -35,6 +35,12 @@ const VoteSetup = ({ voteTitle, setVoteTitle, numberOfPeople, setNumberOfPeople,
         }
     };
 
+    const removeCandidate = (index) => {
+        const newCandidates = [...candidates];
+        newCandidates.splice(index, 1);
+        setCandidates(newCandidates);
+    };
+
 
     useEffect(() => {
         if (numberOfPeople && percentageToWin) {
@@ -110,7 +116,7 @@ const VoteSetup = ({ voteTitle, setVoteTitle, numberOfPeople, setNumberOfPeople,
                                     className="border p-2 mr-2 text-primary"
                                 />
                                 <button
-                                    onClick={() => removeVote(index)}
+                                    onClick={() => removeCandidate(index)}
                                     className="bg-accent2 text-secondary px-4 py-2 rounded"
                                 >
                                     Remove
