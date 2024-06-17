@@ -16,6 +16,13 @@ const VoteSetup = ({ voteTitle, setVoteTitle, numberOfPeople, setNumberOfPeople,
         setIsSetUp(true);
     };
 
+    const handleVoteReset = () => {
+        resetVote();
+        setInputValue('');
+        setNumberOfPeople('');
+        setPercentageNeededToWin('');
+    }
+
     const handleNumberOfPeopleChange = (e) => {
         setNumberOfPeople(e.target.value);
     };
@@ -128,7 +135,7 @@ const VoteSetup = ({ voteTitle, setVoteTitle, numberOfPeople, setNumberOfPeople,
             </section>
             <div className="mt-12">
                 <button
-                    onClick={resetVote}
+                    onClick={handleVoteReset}
                     className="bg-accent2 text-secondary p-2 rounded mr-8"
                 >
                     Reset
