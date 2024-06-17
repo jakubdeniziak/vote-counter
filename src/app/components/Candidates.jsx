@@ -43,28 +43,30 @@ const Candidates = ({ votesNeededToWin, numPeople, totalVotes, setTotalVotes, ca
             <p>
                 {warning && <p className="text-accent2 mb-3">{warning}</p>}
             </p>
-            <ul>
+            <div className="mt-5">
                 {candidates.map((candidate, index) => (
-                    <li key={index} className="flex justify-center items-center mb-2 text-xl">
-                        <p className={`mr-5 ${candidate.votes >= votesNeededToWin ? 'text-accent' : ''}`}>
+                    <div key={index} className="flex flex-row justify-center mb-2">
+                        <p className={`grid place-items-center mr-2 ml-2 w-48 ${candidate.votes >= votesNeededToWin ? 'text-accent font-bold' : ''}`}>
                             {candidate.name}
                         </p>
                         <button
                             onClick={() => removeVote(index)}
-                            className="bg-accent2 text-secondary px-2 py-1 rounded"
+                            className="bg-accent2 text-secondary px-4 py-1 rounded"
                         >
                             -
                         </button>
-                        <p className="ml-2 mr-2">{candidate.votes}</p>
+                        <p className="grid place-items-center mr-2 ml-2 w-8">
+                            {candidate.votes}
+                        </p>
                         <button
                             onClick={() => addVote(index)}
-                            className="bg-accent text-secondary px-2 py-1 rounded"
+                            className="bg-accent text-secondary px-4 py-1 rounded"
                         >
                             +
                         </button>
-                    </li>
+                    </div>
                 ))}
-            </ul>
+            </div>
         </section>
     )
 }
