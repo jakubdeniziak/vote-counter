@@ -119,6 +119,7 @@ export default function Home() {
               isSaved={isSaved}
               setIsSaved={setIsSaved}
               setIsSetUp={setIsSetUp}
+              votesPerVoter={votesPerVoter}
             />
           </div>
         }
