@@ -21,6 +21,8 @@ const VoteSetup = ({ voteTitle, setVoteTitle, numberOfPeople, setNumberOfPeople,
         setInputValue('');
         setNumberOfPeople('');
         setPercentageNeededToWin('');
+        setSingleVotePerVoter(true);
+        setMultipleVotesPerVoter(false);
     }
 
     const handleNumberOfPeopleChange = (e) => {

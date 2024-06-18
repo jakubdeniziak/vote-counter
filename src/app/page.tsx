@@ -39,6 +39,7 @@ export default function Home() {
     setTotalVotes(0);
     setNumberOfPeople(null);
     setPercentageNeededToWin(null);
+    setVotesPerVoter(1);
     setCandidates([
       { name: 'INVALID VOTE', votes: 0 },
       { name: 'Blank', votes: 0 },
