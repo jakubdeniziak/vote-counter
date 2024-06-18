@@ -102,7 +102,7 @@ export default function Home() {
               setTotalVotes={setTotalVotes}
               candidates={candidates}
               setCandidates={setCandidates}
-              votesPerVoter={votesPerVoter}
+              votesPerVoter={Number(votesPerVoter)}
             />
             <VoteSummary
               totalVotes={totalVotes}

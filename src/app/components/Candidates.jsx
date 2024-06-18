@@ -18,19 +18,33 @@ const Candidates = ({ votesNeededToWin, numPeople, totalVotes, setTotalVotes, ca
 
 
     const addVote = (index) => {
-        if (totalVotes < numPeople * votesPerVoter) {
-            const newCandidates = [...candidates];
-            newCandidates[index].votes += 1;
-            setCandidates(newCandidates);
-        } else {
+        if (totalVotes >= numPeople * votesPerVoter) {
             setWarning("There should be no more votes left");
+            return;
         }
+
+        const newCandidates = [...candidates];
+
+        if (newCandidates[index].name == "INVALID VOTE") {
+            if (totalVotes + votesPerVoter > numPeople * votesPerVoter) {
+                setWarning("There should be no more votes left");
+                return;
+            }
+            newCandidates[index].votes += votesPerVoter;
+        } else {
+            newCandidates[index].votes += 1;
+        }        
+        setCandidates(newCandidates);
     };
 
     const removeVote = (index) => {
         const newCandidates = [...candidates];
         if (newCandidates[index].votes > 0) {
-            newCandidates[index].votes -= 1;
+            if (newCandidates[index].name == "INVALID VOTE") {
+                newCandidates[index].votes -= votesPerVoter;
+            } else {
+                newCandidates[index].votes -= 1;
+            }
         }
         setCandidates(newCandidates);
     };
