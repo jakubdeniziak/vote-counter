@@ -109,6 +109,7 @@ export default function Home() {
               votesToWin={votesNeededToWin}
               candidates={candidates}
               theme={theme}
+              votesPerVoter={votesPerVoter}
             />
             <ManageVote
               voteTitle={voteTitle}

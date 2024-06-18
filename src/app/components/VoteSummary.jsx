@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { PieChart } from '@mui/x-charts/PieChart';
 
-const VoteSummary = ({ totalVotes, numPeople, votesToWin, candidates, theme }) => {
+const VoteSummary = ({ totalVotes, numPeople, votesToWin, candidates, theme, votesPerVoter }) => {
     const showPieChart = totalVotes > 0;
     const pieData = {
         data: candidates.map((candidate, index) => ({
@@ -31,7 +31,7 @@ const VoteSummary = ({ totalVotes, numPeople, votesToWin, candidates, theme }) =
             }
             <div>
                 <p className="text-lg font-semibold">Votes counted: {totalVotes}</p>
-                <p className="text-lg font-semibold">Votes left: {numPeople - totalVotes}</p>
+                <p className="text-lg font-semibold">Votes left: {numPeople * votesPerVoter - totalVotes}</p>
                 <p className="text-lg font-semibold">Votes needed to win: {votesToWin}</p>
             </div>
             { showPieChart &&
