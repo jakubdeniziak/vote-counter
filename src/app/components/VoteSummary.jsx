@@ -13,7 +13,7 @@ const VoteSummary = ({ totalVotes, numPeople, votesToWin, candidates, theme, vot
     };
 
     const winners = candidates ? candidates.filter(candidate => candidate.votes >= votesToWin) : [];
-    const allVotesCounted = totalVotes == numPeople;
+    const allVotesCounted = totalVotes == numPeople * votesPerVoter;
 
 
     return (
