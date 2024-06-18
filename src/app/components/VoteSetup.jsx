@@ -3,6 +3,9 @@ import { useState } from 'react';
 const VoteSetup = ({ voteTitle, setVoteTitle, numberOfPeople, setNumberOfPeople, percentageToWin, setPercentageNeededToWin, setIsSetUp, resetVote, candidates, setCandidates }) => {
     const [inputValue, setInputValue] = useState(voteTitle);
     const [newCandidateName, setNewCandidateName] = useState('');
+    const [singleVotePerVoter, setSingleVotePerVoter] = useState(true);
+    const [multipleVotesPerVoter, setMultipleVotesPerVoter] = useState(false);
+    const [votesPerVoter, setVotesPerVoter] = useState(1);
 
 
     const handleInputChange = (e) => {
@@ -27,6 +30,21 @@ const VoteSetup = ({ voteTitle, setVoteTitle, numberOfPeople, setNumberOfPeople,
 
     const handlePercentageChange = (e) => {
         setPercentageNeededToWin(e.target.value);
+    };
+
+    const handleSingleVoteChange = () => {
+        setSingleVotePerVoter(true);
+        setMultipleVotesPerVoter(false);
+        setVotesPerVoter(1);
+    };
+
+    const handleMultipleVotesChange = () => {
+        setSingleVotePerVoter(false);
+        setMultipleVotesPerVoter(true);
+    };
+
+    const handleVotesPerVoterChange = (e) => {
+        setVotesPerVoter(e.target.value);
     };
 
     const handleNewCandidateChange = (e) => {
@@ -81,6 +99,45 @@ const VoteSetup = ({ voteTitle, setVoteTitle, numberOfPeople, setNumberOfPeople,
                             className="text-primary border p-2 mr-2 w-80 mb-2"
                     />
                 </div>
+            </section>
+            <section className="mt-8">
+                <h2 className="text-2xl font-semibold mb-3">Advanced settings</h2>
+                <div className="mb-4">
+                    <label htmlFor="" className="mr-2">
+                        Single vote per voter
+                    </label>
+                    <input
+                        id="singleVote"
+                        type="checkbox"
+                        checked={singleVotePerVoter}
+                        onChange={handleSingleVoteChange}
+                        className="mr-2"
+                    />
+                    <br />
+                    <label htmlFor="multiVote" className="mr-2">
+                        Multiple votes per voter
+                    </label>
+                    <input
+                        id="multiVote"
+                        type="checkbox"
+                        checked={multipleVotesPerVoter}
+                        onChange={handleMultipleVotesChange}
+                        className="mr-2"
+                    />
+                </div>
+                {multipleVotesPerVoter && (
+                <div className="mb-4">
+                    <label className="mr-2">
+                        Number of votes per voter
+                        <input
+                            type="number"
+                            value={votesPerVoter}
+                            onChange={handleVotesPerVoterChange}
+                            className="text-primary border p-2 ml-2 w-40"
+                        />
+                    </label>
+                </div>
+                )}
             </section>
             <section className="mt-8">
                 <h2 className="text-2xl font-semibold mb-3">Candidates</h2>
