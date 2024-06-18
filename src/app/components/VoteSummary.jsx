@@ -12,9 +12,23 @@ const VoteSummary = ({ totalVotes, numPeople, votesToWin, candidates, theme }) =
         }))
     };
 
+    const winners = candidates ? candidates.filter(candidate => candidate.votes >= votesToWin) : [];
+    const allVotesCounted = totalVotes == numPeople;
+
+
     return (
         <section className="mt-5">
             <h2 className="text-2xl font-semibold mb-3">Summary</h2>
+            {allVotesCounted && winners.length > 0 &&
+            <div>
+                <p className="text-xl">
+                    The winner(s):
+                </p>
+                <p className="text-3xl font-semibold my-3 text-green-500">
+                    {winners.map(winner => winner.name).join(', ')}
+                </p>
+            </div>
+            }
             <div>
                 <p className="text-lg font-semibold">Votes counted: {totalVotes}</p>
                 <p className="text-lg font-semibold">Votes left: {numPeople - totalVotes}</p>
