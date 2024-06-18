@@ -1,11 +1,10 @@
 import { useState } from 'react';
 
-const VoteSetup = ({ voteTitle, setVoteTitle, numberOfPeople, setNumberOfPeople, percentageToWin, setPercentageNeededToWin, setIsSetUp, resetVote, candidates, setCandidates }) => {
+const VoteSetup = ({ voteTitle, setVoteTitle, numberOfPeople, setNumberOfPeople, percentageToWin, setPercentageNeededToWin, setIsSetUp, resetVote, candidates, setCandidates, votesPerVoter, setVotesPerVoter }) => {
     const [inputValue, setInputValue] = useState(voteTitle);
     const [newCandidateName, setNewCandidateName] = useState('');
     const [singleVotePerVoter, setSingleVotePerVoter] = useState(true);
     const [multipleVotesPerVoter, setMultipleVotesPerVoter] = useState(false);
-    const [votesPerVoter, setVotesPerVoter] = useState(1);
 
 
     const handleInputChange = (e) => {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const Candidates = ({ votesNeededToWin, numPeople, totalVotes, setTotalVotes, candidates, setCandidates }) => {
+const Candidates = ({ votesNeededToWin, numPeople, totalVotes, setTotalVotes, candidates, setCandidates, votesPerVoter }) => {
     
     const [newCandidateName, setNewCandidateName] = useState('');
     const [warning, setWarning] = useState('');
@@ -9,8 +9,7 @@ const Candidates = ({ votesNeededToWin, numPeople, totalVotes, setTotalVotes, ca
     useEffect(() => {
         const totalCandidateVotes = candidates.reduce((sum, candidate) => sum + candidate.votes, 0);
         setTotalVotes(totalCandidateVotes);
-
-        if (totalCandidateVotes > numPeople) {
+        if (totalCandidateVotes > numPeople * votesPerVoter) {
             setWarning("There should be no more votes left");
         } else {
             setWarning('');
@@ -19,7 +18,7 @@ const Candidates = ({ votesNeededToWin, numPeople, totalVotes, setTotalVotes, ca
 
 
     const addVote = (index) => {
-        if (totalVotes < numPeople) {
+        if (totalVotes < numPeople * votesPerVoter) {
             const newCandidates = [...candidates];
             newCandidates[index].votes += 1;
             setCandidates(newCandidates);

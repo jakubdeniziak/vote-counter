@@ -16,6 +16,7 @@ export default function Home() {
   const [percentageNeededToWin, setPercentageNeededToWin] = useState(null);
   const [isSaved, setIsSaved] = useState(false);
   const [theme, setTheme] = useState('dark');
+  const [votesPerVoter, setVotesPerVoter] = useState(1);
   const [candidates, setCandidates] = useState([
     { name: 'INVALID VOTE', votes: 0 },
     { name: 'Blank', votes: 0 },
@@ -87,6 +88,8 @@ export default function Home() {
             resetVote={resetVote}
             candidates={candidates}
             setCandidates={setCandidates}
+            votesPerVoter={votesPerVoter}
+            setVotesPerVoter={setVotesPerVoter}
           />
           :
           <div>
@@ -98,6 +101,7 @@ export default function Home() {
               setTotalVotes={setTotalVotes}
               candidates={candidates}
               setCandidates={setCandidates}
+              votesPerVoter={votesPerVoter}
             />
             <VoteSummary
               totalVotes={totalVotes}
