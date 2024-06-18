@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const ManageVote = ({ voteTitle, numberOfPeople, percentageNeededToWin, candidates, resetVote, isSaved, setIsSaved, setIsSetUp }) => {
+const ManageVote = ({ voteTitle, numberOfPeople, percentageNeededToWin, candidates, resetVote, isSaved, setIsSaved, setIsSetUp, votesPerVoter }) => {
     const [showWarning, setShowWarning] = useState(false);
 
     
@@ -8,6 +8,7 @@ const ManageVote = ({ voteTitle, numberOfPeople, percentageNeededToWin, candidat
         return JSON.stringify({
             voteTitle,
             numberOfPeople,
+            votesPerVoter,
             percentageNeededToWin,
             candidates,
         }, null, 2);
