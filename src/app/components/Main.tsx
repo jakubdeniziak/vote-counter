@@ -58,7 +58,7 @@ const Main = () => {
 
 
     return (
-        <main className="mb-24">
+        <main className="mb-24 text-center">
         {isSetUp === false ?
           <VoteSetup
             voteTitle={voteTitle}
