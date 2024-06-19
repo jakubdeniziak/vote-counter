@@ -17,7 +17,7 @@ const VoteSummary = ({ totalVotes, numPeople, votesToWin, candidates, theme, vot
 
 
     return (
-        <section className="mt-5">
+        <section className="mt-5 text-center">
             <h2 className="text-2xl font-semibold mb-3">Summary</h2>
             {allVotesCounted && winners.length > 0 &&
             <div>

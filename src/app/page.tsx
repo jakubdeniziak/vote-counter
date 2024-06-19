@@ -15,7 +15,7 @@ export default function Home() {
     };
 
     return (
-        <div className={`text-center ${theme}`}>
+        <>
             <Header
                 toggleTheme={toggleTheme}
                 currentTheme={theme}
@@ -26,6 +26,6 @@ export default function Home() {
             <Footer
                 theme={theme}
             />
-        </div>
+        </>
   );
 }

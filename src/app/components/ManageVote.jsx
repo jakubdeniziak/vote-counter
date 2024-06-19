@@ -42,7 +42,7 @@ const ManageVote = ({ voteTitle, numberOfPeople, percentageNeededToWin, candidat
 
 
     return (
-        <section className="mt-5">
+        <section className="mt-5 text-center">
             <h2 className="text-2xl font-semibold mb-3">Manage</h2>
             {showWarning && <p className="text-red-500 mb-3">Unsaved data will be lost. Please confirm reset.</p>}
             <button

@@ -67,7 +67,7 @@ const VoteSetup = ({ voteTitle, setVoteTitle, numberOfPeople, setNumberOfPeople,
 
 
     return (
-        <div>
+        <div className='text-center'>
             <section className="text-center mt-10">
                 <h2 className="text-2xl font-semibold mb-3">Basic info</h2>
                 <div className="mb-4">
