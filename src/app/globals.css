@@ -8,7 +8,24 @@ body {
   color: theme('colors.secondary');
 }
 
+header {
+  background-color: theme('colors.primaryAccent');
+}
+
+footer {
+  background-color: theme('colors.primaryAccent');
+}
+
+
 .light body {
   background-color: theme('colors.secondary');
   color: theme('colors.primary');
+}
+
+.light header { 
+  background-color: theme('colors.secondaryAccent');
+}
+
+.light footer { 
+  background-color: theme('colors.secondaryAccent');
 }
