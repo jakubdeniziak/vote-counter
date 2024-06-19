@@ -3,18 +3,12 @@
 @tailwind utilities;
 
 
-.light {
-  --bg-color: theme(colors.secondary);
-  --text-color: theme(colors.primary);
+body {
+  background-color: theme('colors.primary');
+  color: theme('colors.secondary');
 }
 
-.dark {
-  --bg-color: theme(colors.primary);
-  --text-color: theme(colors.secondary);
-}
-
-
-html {
-  background-color: var(--bg-color);
-  color: var(--text-color);
+.light body {
+  background-color: theme('colors.secondary');
+  color: theme('colors.primary');
 }

@@ -8,7 +8,7 @@ import VoteSummary from "./VoteSummary";
 import ManageVote from "./ManageVote";
 
 
-const Main = ({ theme } : { theme: any }) => {
+const Main = () => {
     const [isSetUp, setIsSetUp] = useState(false);
     const [voteTitle, setVoteTitle] = useState('');
     const [totalVotes, setTotalVotes] = useState(0);
@@ -55,14 +55,6 @@ const Main = ({ theme } : { theme: any }) => {
         window.removeEventListener('beforeunload', handleBeforeUnload);
       };
     }, [isSaved]);
-  
-    useEffect(() => {
-      if (theme === 'dark') {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-    }, [theme]);
 
 
     return (
@@ -99,7 +91,6 @@ const Main = ({ theme } : { theme: any }) => {
               numPeople={numberOfPeople}
               votesToWin={votesNeededToWin}
               candidates={candidates}
-              theme={theme}
               votesPerVoter={votesPerVoter}
             />
             <ManageVote

@@ -1,6 +1,6 @@
-const Footer = ({theme}) => {
+const Footer = () => {
     return (
-        <footer className={`footer border-t border-accent fixed bottom-0 w-screen ${theme === "dark" ? "bg-primary" : "bg-secondary"}`}>
+        <footer className={"footer border-t border-accent fixed bottom-0 w-screen"}>
             <p className="p-3">&copy; 2024 Jakub Deniziak</p>
         </footer>
     )

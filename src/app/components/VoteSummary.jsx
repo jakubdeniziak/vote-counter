@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { PieChart } from '@mui/x-charts/PieChart';
 
-const VoteSummary = ({ totalVotes, numPeople, votesToWin, candidates, theme, votesPerVoter }) => {
+const VoteSummary = ({ totalVotes, numPeople, votesToWin, candidates, votesPerVoter }) => {
     const showPieChart = totalVotes > 0;
     const pieData = {
         data: candidates.map((candidate, index) => ({
@@ -43,7 +43,7 @@ const VoteSummary = ({ totalVotes, numPeople, votesToWin, candidates, theme, vot
                     slotProps={{
                         legend: {
                             labelStyle: {
-                                fill: theme === 'dark' ? 'white' : 'black',
+                                // fill: theme === 'dark' ? 'white' : 'black',
                             },
                         },
                     }}
