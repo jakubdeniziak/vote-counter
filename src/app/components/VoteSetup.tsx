@@ -1,13 +1,16 @@
 import { useState } from 'react';
 
-const VoteSetup = ({ voteTitle, setVoteTitle, numberOfPeople, setNumberOfPeople, percentageToWin, setPercentageNeededToWin, setIsSetUp, resetVote, candidates, setCandidates, votesPerVoter, setVotesPerVoter }) => {
+const VoteSetup = ({ voteTitle, setVoteTitle, numberOfPeople, setNumberOfPeople, percentageToWin, setPercentageNeededToWin, setIsSetUp, resetVote, candidates, setCandidates, votesPerVoter, setVotesPerVoter }
+    : { voteTitle: any, setVoteTitle: any, numberOfPeople: any, setNumberOfPeople: any, percentageToWin: any, setPercentageNeededToWin: any, setIsSetUp: any, resetVote: any, candidates: any, setCandidates: any, votesPerVoter: any, setVotesPerVoter: any }) => {
+    
+    
     const [inputValue, setInputValue] = useState(voteTitle);
     const [newCandidateName, setNewCandidateName] = useState('');
     const [singleVotePerVoter, setSingleVotePerVoter] = useState(true);
     const [multipleVotesPerVoter, setMultipleVotesPerVoter] = useState(false);
 
 
-    const handleInputChange = (e) => {
+    const handleInputChange = (e: any) => {
         setInputValue(e.target.value);
     };
 
@@ -25,11 +28,11 @@ const VoteSetup = ({ voteTitle, setVoteTitle, numberOfPeople, setNumberOfPeople,
         setMultipleVotesPerVoter(false);
     }
 
-    const handleNumberOfPeopleChange = (e) => {
+    const handleNumberOfPeopleChange = (e: any) => {
         setNumberOfPeople(e.target.value);
     };
 
-    const handlePercentageChange = (e) => {
+    const handlePercentageChange = (e: any) => {
         setPercentageNeededToWin(e.target.value);
     };
 
@@ -44,11 +47,11 @@ const VoteSetup = ({ voteTitle, setVoteTitle, numberOfPeople, setNumberOfPeople,
         setMultipleVotesPerVoter(true);
     };
 
-    const handleVotesPerVoterChange = (e) => {
+    const handleVotesPerVoterChange = (e: any) => {
         setVotesPerVoter(e.target.value);
     };
 
-    const handleNewCandidateChange = (e) => {
+    const handleNewCandidateChange = (e: any) => {
         setNewCandidateName(e.target.value);
     };
 
@@ -59,7 +62,7 @@ const VoteSetup = ({ voteTitle, setVoteTitle, numberOfPeople, setNumberOfPeople,
         }
     };
 
-    const removeCandidate = (index) => {
+    const removeCandidate = (index: any) => {
         const newCandidates = [...candidates];
         newCandidates.splice(index, 1);
         setCandidates(newCandidates);
@@ -157,7 +160,7 @@ const VoteSetup = ({ voteTitle, setVoteTitle, numberOfPeople, setNumberOfPeople,
                         Add
                     </button>
                     <div className="mt-5">
-                        {candidates.map((candidate, index) => (
+                        {candidates.map((candidate: any, index: any) => (
                             <div key={index} className="flex flex-row justify-center mb-2">
                                 <input
                                     type="text"

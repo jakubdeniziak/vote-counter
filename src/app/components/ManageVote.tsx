@@ -1,10 +1,11 @@
 import { useState } from "react";
 
-const ManageVote = ({ voteTitle, numberOfPeople, percentageNeededToWin, candidates, resetVote, isSaved, setIsSaved, setIsSetUp, votesPerVoter }) => {
-    const [showWarning, setShowWarning] = useState(false);
-
+const ManageVote = ({ voteTitle, numberOfPeople, percentageNeededToWin, candidates, resetVote, isSaved, setIsSaved, setIsSetUp, votesPerVoter }
+    : { voteTitle: any, numberOfPeople: any, percentageNeededToWin: any, candidates: any, resetVote: any, isSaved: any, setIsSaved: any, setIsSetUp: any, votesPerVoter: any }) => {
     
-    const serializeVoteData = (voteTitle, numberOfPeople, percentageNeededToWin, candidates) => {
+    const [showWarning, setShowWarning] = useState(false);
+    
+    const serializeVoteData = (voteTitle: any, numberOfPeople: any, percentageNeededToWin: any, candidates: any) => {
         return JSON.stringify({
             voteTitle,
             numberOfPeople,

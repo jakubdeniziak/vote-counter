@@ -2,17 +2,19 @@ import * as React from 'react';
 
 import { PieChart } from '@mui/x-charts/PieChart';
 
-const VoteSummary = ({ totalVotes, numPeople, votesToWin, candidates, votesPerVoter }) => {
+const VoteSummary = ({ totalVotes, numPeople, votesToWin, candidates, votesPerVoter }
+    : { totalVotes: any, numPeople: any, votesToWin: any, candidates: any, votesPerVoter: any }) => {
+
     const showPieChart = totalVotes > 0;
     const pieData = {
-        data: candidates.map((candidate, index) => ({
+        data: candidates.map((candidate: any, index: any) => ({
             id: index,
             value: candidate.votes,
             label: candidate.name
         }))
     };
 
-    const winners = candidates ? candidates.filter(candidate => candidate.votes >= votesToWin) : [];
+    const winners = candidates ? candidates.filter((candidate: any) => candidate.votes >= votesToWin) : [];
     const allVotesCounted = totalVotes == numPeople * votesPerVoter;
 
 
@@ -25,7 +27,7 @@ const VoteSummary = ({ totalVotes, numPeople, votesToWin, candidates, votesPerVo
                     The winner(s):
                 </p>
                 <p className="text-3xl font-semibold my-3 text-green-500">
-                    {winners.map(winner => winner.name).join(', ')}
+                    {winners.map((winner: any) => winner.name).join(', ')}
                 </p>
             </div>
             }
