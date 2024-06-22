@@ -18,13 +18,7 @@ const Main = () => {
         { name: 'Blank', votes: 0 },
     ]);
   
-    const calculateVotesNeededToWin = () => {
-        if (numberOfPeople && percentageNeededToWin) {
-            return Math.ceil((percentageNeededToWin / 100) * numberOfPeople);
-        }
-    };
-  
-    const votesNeededToWin = calculateVotesNeededToWin()
+    
   
     const resetVote = () => {
         setVoteTitle('');
@@ -74,7 +68,6 @@ const Main = () => {
         :
             <VoteInProgress
                 voteTitle={voteTitle}
-                votesNeededToWin={votesNeededToWin}
                 numberOfPeople={numberOfPeople}
                 totalVotes={totalVotes}
                 setTotalVotes={setTotalVotes}

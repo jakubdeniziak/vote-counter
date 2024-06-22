@@ -2,9 +2,17 @@ import Candidates from "./Candidates";
 import VoteSummary from "./VoteSummary";
 import ManageVote from "./ManageVote";
 
-const VoteInProgress = ({voteTitle, votesNeededToWin, numberOfPeople, totalVotes, setTotalVotes, candidates, setCandidates, votesPerVoter, percentageNeededToWin, resetVote, isSaved, setIsSaved, setIsSetUp}
-    : {voteTitle: any, votesNeededToWin: any, numberOfPeople: any, totalVotes: any, setTotalVotes: any, candidates: any, setCandidates: any, votesPerVoter: any, percentageNeededToWin: any, resetVote: any, isSaved: any, setIsSaved: any, setIsSetUp: any}
+const VoteInProgress = ({voteTitle, numberOfPeople, totalVotes, setTotalVotes, candidates, setCandidates, votesPerVoter, percentageNeededToWin, resetVote, isSaved, setIsSaved, setIsSetUp}
+    : {voteTitle: any, numberOfPeople: any, totalVotes: any, setTotalVotes: any, candidates: any, setCandidates: any, votesPerVoter: any, percentageNeededToWin: any, resetVote: any, isSaved: any, setIsSaved: any, setIsSetUp: any}
 ) => {
+
+    const calculateVotesNeededToWin = () => {
+        if (numberOfPeople && percentageNeededToWin) {
+            return Math.ceil((percentageNeededToWin / 100) * numberOfPeople);
+        }
+    };
+  
+    const votesNeededToWin = calculateVotesNeededToWin()
 
     return (
         <>
