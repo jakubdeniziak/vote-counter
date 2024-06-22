@@ -6,8 +6,11 @@ import VoteSetup from "./setup/VoteSetup";
 import VoteInProgress from "./inprogress/VoteInProgress"
 
 const Main = () => {
+    const [voteData, setVoteData] = useState({
+        title: ""
+    });
+
     const [isSetUp, setIsSetUp] = useState(false);
-    const [voteTitle, setVoteTitle] = useState('');
     const [totalVotes, setTotalVotes] = useState(0);
     const [numberOfPeople, setNumberOfPeople] = useState(null);
     const [percentageNeededToWin, setPercentageNeededToWin] = useState(null);
@@ -21,7 +24,9 @@ const Main = () => {
     
   
     const resetVote = () => {
-        setVoteTitle('');
+        setVoteData({
+            title: ""
+        })
         setTotalVotes(0);
         setNumberOfPeople(null);
         setPercentageNeededToWin(null);
@@ -52,8 +57,8 @@ const Main = () => {
         <main className="mb-24 text-center">
         {isSetUp === false ?
             <VoteSetup
-                voteTitle={voteTitle}
-                setVoteTitle={setVoteTitle}
+                voteData={voteData}
+                setVoteData={setVoteData}
                 numberOfPeople={numberOfPeople}
                 setNumberOfPeople={setNumberOfPeople}
                 percentageToWin={percentageNeededToWin}
@@ -67,7 +72,7 @@ const Main = () => {
             />
         :
             <VoteInProgress
-                voteTitle={voteTitle}
+                voteTitle={voteData.title}
                 numberOfPeople={numberOfPeople}
                 totalVotes={totalVotes}
                 setTotalVotes={setTotalVotes}

@@ -3,21 +3,18 @@ import BasicInfo from './BasicInfoSetup';
 import AdvancedSettings from './AdvancedSettingsSetup';
 import CandidatesSetup from './CandidatesSetup';
 
-const VoteSetup = ({ voteTitle, setVoteTitle, numberOfPeople, setNumberOfPeople, percentageToWin, setPercentageNeededToWin, setIsSetUp, resetVote, candidates, setCandidates, votesPerVoter, setVotesPerVoter }
-    : { voteTitle: any, setVoteTitle: any, numberOfPeople: any, setNumberOfPeople: any, percentageToWin: any, setPercentageNeededToWin: any, setIsSetUp: any, resetVote: any, candidates: any, setCandidates: any, votesPerVoter: any, setVotesPerVoter: any }
+const VoteSetup = ({ voteData, setVoteData, numberOfPeople, setNumberOfPeople, percentageToWin, setPercentageNeededToWin, setIsSetUp, resetVote, candidates, setCandidates, votesPerVoter, setVotesPerVoter }
+    : { voteData: any, setVoteData: any, numberOfPeople: any, setNumberOfPeople: any, percentageToWin: any, setPercentageNeededToWin: any, setIsSetUp: any, resetVote: any, candidates: any, setCandidates: any, votesPerVoter: any, setVotesPerVoter: any }
 ) => {
-    const [inputValue, setInputValue] = useState(voteTitle);
     const [singleVotePerVoter, setSingleVotePerVoter] = useState(true);
     const [multipleVotesPerVoter, setMultipleVotesPerVoter] = useState(false);
 
     const handleVoteSetUp = () => {
-        setVoteTitle(inputValue);
         setIsSetUp(true);
     };
 
     const handleVoteReset = () => {
         resetVote();
-        setInputValue('');
         setNumberOfPeople('');
         setPercentageNeededToWin('');
         setSingleVotePerVoter(true);
@@ -28,8 +25,7 @@ const VoteSetup = ({ voteTitle, setVoteTitle, numberOfPeople, setNumberOfPeople,
     return (
         <div className='text-center'>
             <BasicInfo
-                inputValue={inputValue}
-                setInputValue={setInputValue}
+                setVoteData={setVoteData}
                 numberOfPeople={numberOfPeople}
                 setNumberOfPeople={setNumberOfPeople}
                 percentageToWin={percentageToWin}
