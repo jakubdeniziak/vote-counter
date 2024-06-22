@@ -1,8 +1,6 @@
 import { useState } from "react";
 
-const ManageVote = ({ voteData, candidates, resetVote, isSaved, setIsSaved }
-    : { voteData: any, candidates: any, resetVote: any, isSaved: any, setIsSaved: any }) => {
-    
+const ManageVote = ({ voteData, setVoteData, candidates, resetVote }: { voteData: any, setVoteData: any, candidates: any, resetVote: any }) => {
     const [showWarning, setShowWarning] = useState(false);
     
     const serializeVoteData = () => {
@@ -23,16 +21,17 @@ const ManageVote = ({ voteData, candidates, resetVote, isSaved, setIsSaved }
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
-        setIsSaved(true);
+        setVoteData((prev: any) => {
+            return {...prev, ['isSaved']: true}
+        });
         setShowWarning(false);
     };
 
     const handleResetVote = () => {
-        if (!isSaved && !showWarning) {
+        if (!voteData.isSaved && !showWarning) {
             setShowWarning(true);
         } else {
             resetVote();
-            setIsSaved(false);
             setShowWarning(false);
         }
     };
