@@ -11,10 +11,10 @@ const Main = () => {
         title: "",
         numberOfVoters: null,
         percentageNeededToWin: null,
-        votesPerVoter: 1
+        votesPerVoter: 1,
+        votesCounted: 0
     });
 
-    const [totalVotes, setTotalVotes] = useState(0);
     const [isSaved, setIsSaved] = useState(false);
     const [candidates, setCandidates] = useState([
         { name: 'INVALID VOTE', votes: 0 },
@@ -27,9 +27,9 @@ const Main = () => {
             title: "",
             numberOfVoters: null,
             percentageNeededToWin: null,
-            votesPerVoter: 1
+            votesPerVoter: 1,
+            votesCounted: 0
         })
-        setTotalVotes(0);
         setCandidates([
             { name: 'INVALID VOTE', votes: 0 },
             { name: 'Blank', votes: 0 },
@@ -63,10 +63,10 @@ const Main = () => {
             />
         :
             <VoteInProgress
+                voteData={voteData}
+                setVoteData={setVoteData}
                 voteTitle={voteData.title}
                 numberOfPeople={voteData.numberOfVoters}
-                totalVotes={totalVotes}
-                setTotalVotes={setTotalVotes}
                 candidates={candidates}
                 setCandidates={setCandidates}
                 votesPerVoter={voteData.votesPerVoter}

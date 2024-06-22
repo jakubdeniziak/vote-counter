@@ -1,16 +1,18 @@
 import { useState, useEffect } from "react";
 
-const Candidates = ({ votesNeededToWin, numPeople, totalVotes, setTotalVotes, candidates, setCandidates, votesPerVoter }
-    : { votesNeededToWin: any, numPeople: any, totalVotes: any, setTotalVotes: any, candidates: any, setCandidates: any, votesPerVoter: any }
+const Candidates = ({ voteData, setVoteData, votesNeededToWin, numPeople, candidates, setCandidates, votesPerVoter }
+    : { voteData: any, setVoteData: any, votesNeededToWin: any, numPeople: any, candidates: any, setCandidates: any, votesPerVoter: any }
 ) => {
-    
-    const [newCandidateName, setNewCandidateName] = useState('');
     const [warning, setWarning] = useState('');
-
 
     useEffect(() => {
         const totalCandidateVotes = candidates.reduce((sum: any, candidate: any) => sum + candidate.votes, 0);
-        setTotalVotes(totalCandidateVotes);
+        
+        setVoteData((prev: any) => {
+            return {...prev, ['votesCounted']: totalCandidateVotes}
+        });
+
+
         if (totalCandidateVotes > numPeople * votesPerVoter) {
             setWarning("There should be no more votes left");
         } else {
@@ -18,9 +20,8 @@ const Candidates = ({ votesNeededToWin, numPeople, totalVotes, setTotalVotes, ca
         }
     }, [candidates, numPeople]);
 
-
     const addVote = (index: any) => {
-        if (totalVotes >= numPeople * votesPerVoter) {
+        if (voteData.votesCounted >= numPeople * votesPerVoter) {
             setWarning("There should be no more votes left");
             return;
         }
@@ -28,7 +29,7 @@ const Candidates = ({ votesNeededToWin, numPeople, totalVotes, setTotalVotes, ca
         const newCandidates = [...candidates];
 
         if (newCandidates[index].name == "INVALID VOTE") {
-            if (totalVotes + votesPerVoter > numPeople * votesPerVoter) {
+            if (voteData.votesCounted + votesPerVoter > numPeople * votesPerVoter) {
                 setWarning("There should be no more votes left");
                 return;
             }

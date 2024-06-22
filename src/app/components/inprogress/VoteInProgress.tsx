@@ -2,8 +2,8 @@ import Candidates from "./Candidates";
 import VoteSummary from "./VoteSummary";
 import ManageVote from "./ManageVote";
 
-const VoteInProgress = ({voteTitle, numberOfPeople, totalVotes, setTotalVotes, candidates, setCandidates, votesPerVoter, percentageNeededToWin, resetVote, isSaved, setIsSaved}
-    : {voteTitle: any, numberOfPeople: any, totalVotes: any, setTotalVotes: any, candidates: any, setCandidates: any, votesPerVoter: any, percentageNeededToWin: any, resetVote: any, isSaved: any, setIsSaved: any}
+const VoteInProgress = ({voteData, setVoteData, voteTitle, numberOfPeople, candidates, setCandidates, votesPerVoter, percentageNeededToWin, resetVote, isSaved, setIsSaved}
+    : {voteData: any, setVoteData: any, voteTitle: any, numberOfPeople: any, candidates: any, setCandidates: any, votesPerVoter: any, percentageNeededToWin: any, resetVote: any, isSaved: any, setIsSaved: any}
 ) => {
 
     const calculateVotesNeededToWin = () => {
@@ -18,16 +18,16 @@ const VoteInProgress = ({voteTitle, numberOfPeople, totalVotes, setTotalVotes, c
         <>
             <h2 className='text-3xl mt-5'>{voteTitle}</h2>
             <Candidates
+                voteData={voteData}
+                setVoteData={setVoteData}
                 votesNeededToWin={votesNeededToWin}
                 numPeople={numberOfPeople}
-                totalVotes={totalVotes}
-                setTotalVotes={setTotalVotes}
                 candidates={candidates}
                 setCandidates={setCandidates}
                 votesPerVoter={Number(votesPerVoter)}
             />
             <VoteSummary
-                totalVotes={totalVotes}
+                totalVotes={voteData.votesCounted}
                 numPeople={numberOfPeople}
                 votesToWin={votesNeededToWin}
                 candidates={candidates}
