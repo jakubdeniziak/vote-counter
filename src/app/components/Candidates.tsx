@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
 
-const Candidates = ({ votesNeededToWin, numPeople, totalVotes, setTotalVotes, candidates, setCandidates, votesPerVoter }) => {
+const Candidates = ({ votesNeededToWin, numPeople, totalVotes, setTotalVotes, candidates, setCandidates, votesPerVoter }
+    : { votesNeededToWin: any, numPeople: any, totalVotes: any, setTotalVotes: any, candidates: any, setCandidates: any, votesPerVoter: any }
+) => {
     
     const [newCandidateName, setNewCandidateName] = useState('');
     const [warning, setWarning] = useState('');
 
 
     useEffect(() => {
-        const totalCandidateVotes = candidates.reduce((sum, candidate) => sum + candidate.votes, 0);
+        const totalCandidateVotes = candidates.reduce((sum: any, candidate: any) => sum + candidate.votes, 0);
         setTotalVotes(totalCandidateVotes);
         if (totalCandidateVotes > numPeople * votesPerVoter) {
             setWarning("There should be no more votes left");
@@ -17,7 +19,7 @@ const Candidates = ({ votesNeededToWin, numPeople, totalVotes, setTotalVotes, ca
     }, [candidates, numPeople]);
 
 
-    const addVote = (index) => {
+    const addVote = (index: any) => {
         if (totalVotes >= numPeople * votesPerVoter) {
             setWarning("There should be no more votes left");
             return;
@@ -37,7 +39,7 @@ const Candidates = ({ votesNeededToWin, numPeople, totalVotes, setTotalVotes, ca
         setCandidates(newCandidates);
     };
 
-    const removeVote = (index) => {
+    const removeVote = (index: any) => {
         const newCandidates = [...candidates];
         if (newCandidates[index].votes > 0) {
             if (newCandidates[index].name == "INVALID VOTE") {
@@ -57,7 +59,7 @@ const Candidates = ({ votesNeededToWin, numPeople, totalVotes, setTotalVotes, ca
                 {warning && <p className="text-accent2 mb-3">{warning}</p>}
             </p>
             <div className="mt-5">
-                {candidates.map((candidate, index) => (
+                {candidates.map((candidate: any, index: any) => (
                     <div key={index} className="flex flex-row justify-center mb-2">
                         <p className={`grid place-items-center mr-2 ml-2 w-48 ${candidate.votes >= votesNeededToWin ? 'text-accent font-bold' : ''}`}>
                             {candidate.name}
