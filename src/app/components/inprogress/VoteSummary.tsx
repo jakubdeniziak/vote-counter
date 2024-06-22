@@ -1,23 +1,21 @@
 import * as React from 'react';
-
 import { PieChart } from '@mui/x-charts/PieChart';
 
-const VoteSummary = ({ totalVotes, numPeople, votesToWin, candidates, theme, votesPerVoter }) => {
-    const showPieChart = totalVotes > 0;
+const VoteSummary = ({ voteData, votesToWin, candidates, theme }: { voteData: any, votesToWin: any, candidates: any, theme: any }) => {
+
+    const showPieChart = voteData.votesCounted > 0;
     const pieData = {
-        data: candidates.map((candidate, index) => ({
+        data: candidates.map((candidate: any, index: any) => ({
             id: index,
             value: candidate.votes,
             label: candidate.name
         }))
     };
-
-    const winners = candidates ? candidates.filter(candidate => candidate.votes >= votesToWin) : [];
-    const allVotesCounted = totalVotes == numPeople * votesPerVoter;
-
+    const winners = candidates ? candidates.filter((candidate: any) => candidate.votes >= votesToWin) : [];
+    const allVotesCounted = voteData.votesCounted == voteData.numberOfVoters * voteData.votesPerVoter;
 
     return (
-        <section className="mt-5">
+        <section className="mt-5 text-center">
             <h2 className="text-2xl font-semibold mb-3">Summary</h2>
             {allVotesCounted && winners.length > 0 &&
             <div>
@@ -25,13 +23,13 @@ const VoteSummary = ({ totalVotes, numPeople, votesToWin, candidates, theme, vot
                     The winner(s):
                 </p>
                 <p className="text-3xl font-semibold my-3 text-green-500">
-                    {winners.map(winner => winner.name).join(', ')}
+                    {winners.map((winner: any) => winner.name).join(', ')}
                 </p>
             </div>
             }
             <div>
-                <p className="text-lg font-semibold">Votes counted: {totalVotes}</p>
-                <p className="text-lg font-semibold">Votes left: {numPeople * votesPerVoter - totalVotes}</p>
+                <p className="text-lg font-semibold">Votes counted: {voteData.votesCounted}</p>
+                <p className="text-lg font-semibold">Votes left: {voteData.numberOfVoters * voteData.votesPerVoter - voteData.votesCounted}</p>
                 <p className="text-lg font-semibold">Votes needed to win: {votesToWin}</p>
             </div>
             { showPieChart &&
