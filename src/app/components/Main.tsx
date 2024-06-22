@@ -7,12 +7,12 @@ import VoteInProgress from "./inprogress/VoteInProgress"
 
 const Main = () => {
     const [voteData, setVoteData] = useState({
-        title: ""
+        title: "",
+        numberOfVoters: null
     });
 
     const [isSetUp, setIsSetUp] = useState(false);
     const [totalVotes, setTotalVotes] = useState(0);
-    const [numberOfPeople, setNumberOfPeople] = useState(null);
     const [percentageNeededToWin, setPercentageNeededToWin] = useState(null);
     const [isSaved, setIsSaved] = useState(false);
     const [votesPerVoter, setVotesPerVoter] = useState(1);
@@ -25,10 +25,10 @@ const Main = () => {
   
     const resetVote = () => {
         setVoteData({
-            title: ""
+            title: "",
+            numberOfVoters: null
         })
         setTotalVotes(0);
-        setNumberOfPeople(null);
         setPercentageNeededToWin(null);
         setVotesPerVoter(1);
         setCandidates([
@@ -59,8 +59,6 @@ const Main = () => {
             <VoteSetup
                 voteData={voteData}
                 setVoteData={setVoteData}
-                numberOfPeople={numberOfPeople}
-                setNumberOfPeople={setNumberOfPeople}
                 percentageToWin={percentageNeededToWin}
                 setPercentageNeededToWin={setPercentageNeededToWin}
                 setIsSetUp={setIsSetUp}
@@ -73,7 +71,7 @@ const Main = () => {
         :
             <VoteInProgress
                 voteTitle={voteData.title}
-                numberOfPeople={numberOfPeople}
+                numberOfPeople={voteData.numberOfVoters}
                 totalVotes={totalVotes}
                 setTotalVotes={setTotalVotes}
                 candidates={candidates}

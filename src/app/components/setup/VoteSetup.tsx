@@ -3,8 +3,8 @@ import BasicInfo from './BasicInfoSetup';
 import AdvancedSettings from './AdvancedSettingsSetup';
 import CandidatesSetup from './CandidatesSetup';
 
-const VoteSetup = ({ voteData, setVoteData, numberOfPeople, setNumberOfPeople, percentageToWin, setPercentageNeededToWin, setIsSetUp, resetVote, candidates, setCandidates, votesPerVoter, setVotesPerVoter }
-    : { voteData: any, setVoteData: any, numberOfPeople: any, setNumberOfPeople: any, percentageToWin: any, setPercentageNeededToWin: any, setIsSetUp: any, resetVote: any, candidates: any, setCandidates: any, votesPerVoter: any, setVotesPerVoter: any }
+const VoteSetup = ({ voteData, setVoteData, percentageToWin, setPercentageNeededToWin, setIsSetUp, resetVote, candidates, setCandidates, votesPerVoter, setVotesPerVoter }
+    : { voteData: any, setVoteData: any, percentageToWin: any, setPercentageNeededToWin: any, setIsSetUp: any, resetVote: any, candidates: any, setCandidates: any, votesPerVoter: any, setVotesPerVoter: any }
 ) => {
     const [singleVotePerVoter, setSingleVotePerVoter] = useState(true);
     const [multipleVotesPerVoter, setMultipleVotesPerVoter] = useState(false);
@@ -15,7 +15,6 @@ const VoteSetup = ({ voteData, setVoteData, numberOfPeople, setNumberOfPeople, p
 
     const handleVoteReset = () => {
         resetVote();
-        setNumberOfPeople('');
         setPercentageNeededToWin('');
         setSingleVotePerVoter(true);
         setMultipleVotesPerVoter(false);
@@ -26,8 +25,6 @@ const VoteSetup = ({ voteData, setVoteData, numberOfPeople, setNumberOfPeople, p
         <div className='text-center'>
             <BasicInfo
                 setVoteData={setVoteData}
-                numberOfPeople={numberOfPeople}
-                setNumberOfPeople={setNumberOfPeople}
                 percentageToWin={percentageToWin}
                 setPercentageNeededToWin={setPercentageNeededToWin}
             />

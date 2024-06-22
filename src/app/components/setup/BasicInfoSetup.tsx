@@ -1,17 +1,13 @@
 import React, { Dispatch } from 'react';
 
-const BasicInfo = ({ setVoteData, numberOfPeople, setNumberOfPeople, percentageToWin, setPercentageNeededToWin }:
-    { setVoteData: Dispatch<any>, numberOfPeople: number, setNumberOfPeople: Dispatch<number>, percentageToWin: number, setPercentageNeededToWin: Dispatch<number> }
+const BasicInfo = ({ setVoteData, percentageToWin, setPercentageNeededToWin }:
+    { setVoteData: Dispatch<any>, percentageToWin: number, setPercentageNeededToWin: Dispatch<number> }
 ) => {
-    const handleInputChange = (e: any) => {
+    const handleChange = (e: any) => {
         const {name, value} = e.target;
         setVoteData((prev: any) => {
             return {...prev, [name]: value}
         });
-    };
-
-    const handleNumberOfPeopleChange = (e: any) => {
-        setNumberOfPeople(e.target.value);
     };
 
     const handlePercentageChange = (e: any) => {
@@ -27,7 +23,7 @@ const BasicInfo = ({ setVoteData, numberOfPeople, setNumberOfPeople, percentageT
                     type="text"
                     id="voteTitle"
                     name="title"
-                    onChange={handleInputChange}
+                    onChange={handleChange}
                     className="text-primary border p-2 mr-2 w-80"
                 />
             </div>
@@ -36,8 +32,8 @@ const BasicInfo = ({ setVoteData, numberOfPeople, setNumberOfPeople, percentageT
                 <input
                     type="number"
                     id="numberOfPeople"
-                    value={numberOfPeople}
-                    onChange={handleNumberOfPeopleChange}
+                    name="numberOfVoters"
+                    onChange={handleChange}
                     className="text-primary border p-2 mr-2 mb-4 w-80"
                 />
             </div>
