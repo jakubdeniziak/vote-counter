@@ -2,13 +2,13 @@ import Candidates from "./Candidates";
 import VoteSummary from "./VoteSummary";
 import ManageVote from "./ManageVote";
 
-const VoteInProgress = ({voteData, setVoteData, voteTitle, numberOfPeople, candidates, setCandidates, votesPerVoter, percentageNeededToWin, resetVote, isSaved, setIsSaved}
-    : {voteData: any, setVoteData: any, voteTitle: any, numberOfPeople: any, candidates: any, setCandidates: any, votesPerVoter: any, percentageNeededToWin: any, resetVote: any, isSaved: any, setIsSaved: any}
+const VoteInProgress = ({voteData, setVoteData, candidates, setCandidates, resetVote, isSaved, setIsSaved}
+    : {voteData: any, setVoteData: any, candidates: any, setCandidates: any, resetVote: any, isSaved: any, setIsSaved: any}
 ) => {
 
     const calculateVotesNeededToWin = () => {
-        if (numberOfPeople && percentageNeededToWin) {
-            return Math.ceil((percentageNeededToWin / 100) * numberOfPeople);
+        if (voteData.numberOfVoters && voteData.percentageNeededToWin) {
+            return Math.ceil((voteData.percentageNeededToWin / 100) * voteData.numberOfVoters);
         }
     };
   
@@ -16,32 +16,25 @@ const VoteInProgress = ({voteData, setVoteData, voteTitle, numberOfPeople, candi
 
     return (
         <>
-            <h2 className='text-3xl mt-5'>{voteTitle}</h2>
+            <h2 className='text-3xl mt-5'>{voteData.title}</h2>
             <Candidates
                 voteData={voteData}
                 setVoteData={setVoteData}
                 votesNeededToWin={votesNeededToWin}
-                numPeople={numberOfPeople}
                 candidates={candidates}
                 setCandidates={setCandidates}
-                votesPerVoter={Number(votesPerVoter)}
             />
             <VoteSummary
-                totalVotes={voteData.votesCounted}
-                numPeople={numberOfPeople}
+                voteData={voteData}
                 votesToWin={votesNeededToWin}
                 candidates={candidates}
-                votesPerVoter={votesPerVoter}
             />
             <ManageVote
-                voteTitle={voteTitle}
-                numberOfPeople={numberOfPeople}
-                percentageNeededToWin={percentageNeededToWin}
+                voteData={voteData}
                 candidates={candidates}
                 resetVote={resetVote}
                 isSaved={isSaved}
                 setIsSaved={setIsSaved}
-                votesPerVoter={votesPerVoter}
             />
         </>
     )

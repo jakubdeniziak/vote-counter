@@ -65,12 +65,8 @@ const Main = () => {
             <VoteInProgress
                 voteData={voteData}
                 setVoteData={setVoteData}
-                voteTitle={voteData.title}
-                numberOfPeople={voteData.numberOfVoters}
                 candidates={candidates}
                 setCandidates={setCandidates}
-                votesPerVoter={voteData.votesPerVoter}
-                percentageNeededToWin={voteData.percentageNeededToWin}
                 resetVote={resetVote}
                 isSaved={isSaved}
                 setIsSaved={setIsSaved}

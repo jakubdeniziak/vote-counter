@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
-const Candidates = ({ voteData, setVoteData, votesNeededToWin, numPeople, candidates, setCandidates, votesPerVoter }
-    : { voteData: any, setVoteData: any, votesNeededToWin: any, numPeople: any, candidates: any, setCandidates: any, votesPerVoter: any }
+const Candidates = ({ voteData, setVoteData, candidates, setCandidates, votesNeededToWin }
+    : { voteData: any, setVoteData: any, candidates: any, setCandidates: any, votesNeededToWin: any }
 ) => {
     const [warning, setWarning] = useState('');
 
@@ -13,15 +13,15 @@ const Candidates = ({ voteData, setVoteData, votesNeededToWin, numPeople, candid
         });
 
 
-        if (totalCandidateVotes > numPeople * votesPerVoter) {
+        if (totalCandidateVotes > voteData.numberOfVoters * voteData.votesPerVoter) {
             setWarning("There should be no more votes left");
         } else {
             setWarning('');
         }
-    }, [candidates, numPeople]);
+    }, [candidates, voteData.numberOfVoters]);
 
     const addVote = (index: any) => {
-        if (voteData.votesCounted >= numPeople * votesPerVoter) {
+        if (voteData.votesCounted >= voteData.numberOfVoters * voteData.votesPerVoter) {
             setWarning("There should be no more votes left");
             return;
         }
@@ -29,11 +29,11 @@ const Candidates = ({ voteData, setVoteData, votesNeededToWin, numPeople, candid
         const newCandidates = [...candidates];
 
         if (newCandidates[index].name == "INVALID VOTE") {
-            if (voteData.votesCounted + votesPerVoter > numPeople * votesPerVoter) {
+            if (voteData.votesCounted + voteData.votesPerVoter > voteData.numberOfVoters * voteData.votesPerVoter) {
                 setWarning("There should be no more votes left");
                 return;
             }
-            newCandidates[index].votes += votesPerVoter;
+            newCandidates[index].votes += voteData.votesPerVoter;
         } else {
             newCandidates[index].votes += 1;
         }        
@@ -44,7 +44,7 @@ const Candidates = ({ voteData, setVoteData, votesNeededToWin, numPeople, candid
         const newCandidates = [...candidates];
         if (newCandidates[index].votes > 0) {
             if (newCandidates[index].name == "INVALID VOTE") {
-                newCandidates[index].votes -= votesPerVoter;
+                newCandidates[index].votes -= voteData.votesPerVoter;
             } else {
                 newCandidates[index].votes -= 1;
             }

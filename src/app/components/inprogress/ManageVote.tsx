@@ -1,27 +1,24 @@
 import { useState } from "react";
 
-const ManageVote = ({ voteTitle, numberOfPeople, percentageNeededToWin, candidates, resetVote, isSaved, setIsSaved, votesPerVoter }
-    : { voteTitle: any, numberOfPeople: any, percentageNeededToWin: any, candidates: any, resetVote: any, isSaved: any, setIsSaved: any, votesPerVoter: any }) => {
+const ManageVote = ({ voteData, candidates, resetVote, isSaved, setIsSaved }
+    : { voteData: any, candidates: any, resetVote: any, isSaved: any, setIsSaved: any }) => {
     
     const [showWarning, setShowWarning] = useState(false);
     
-    const serializeVoteData = (voteTitle: any, numberOfPeople: any, percentageNeededToWin: any, candidates: any) => {
+    const serializeVoteData = () => {
         return JSON.stringify({
-            voteTitle,
-            numberOfPeople,
-            votesPerVoter,
-            percentageNeededToWin,
+            voteData,
             candidates,
         }, null, 2);
     };
 
     const saveVoteData = () => {
-        const jsonData = serializeVoteData(voteTitle, numberOfPeople, percentageNeededToWin, candidates);
+        const jsonData = serializeVoteData();
         const blob = new Blob([jsonData], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `${voteTitle}.json`;
+        a.download = `${voteData.title}.json`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);

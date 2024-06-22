@@ -2,10 +2,10 @@ import * as React from 'react';
 
 import { PieChart } from '@mui/x-charts/PieChart';
 
-const VoteSummary = ({ totalVotes, numPeople, votesToWin, candidates, votesPerVoter }
-    : { totalVotes: any, numPeople: any, votesToWin: any, candidates: any, votesPerVoter: any }) => {
+const VoteSummary = ({ voteData, votesToWin, candidates }
+    : { voteData: any, votesToWin: any, candidates: any }) => {
 
-    const showPieChart = totalVotes > 0;
+    const showPieChart = voteData.votesCounted > 0;
     const pieData = {
         data: candidates.map((candidate: any, index: any) => ({
             id: index,
@@ -15,7 +15,7 @@ const VoteSummary = ({ totalVotes, numPeople, votesToWin, candidates, votesPerVo
     };
 
     const winners = candidates ? candidates.filter((candidate: any) => candidate.votes >= votesToWin) : [];
-    const allVotesCounted = totalVotes == numPeople * votesPerVoter;
+    const allVotesCounted = voteData.votesCounted == voteData.numberOfVoters * voteData.votesPerVoter;
 
 
     return (
@@ -32,8 +32,8 @@ const VoteSummary = ({ totalVotes, numPeople, votesToWin, candidates, votesPerVo
             </div>
             }
             <div>
-                <p className="text-lg font-semibold">Votes counted: {totalVotes}</p>
-                <p className="text-lg font-semibold">Votes left: {numPeople * votesPerVoter - totalVotes}</p>
+                <p className="text-lg font-semibold">Votes counted: {voteData.votesCounted}</p>
+                <p className="text-lg font-semibold">Votes left: {voteData.numberOfVoters * voteData.votesPerVoter - voteData.votesCounted}</p>
                 <p className="text-lg font-semibold">Votes needed to win: {votesToWin}</p>
             </div>
             { showPieChart &&
