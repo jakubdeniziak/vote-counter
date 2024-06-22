@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Image from "next/image"
 
 import Moon from "@/public/images/moon.svg"
 import Sun from "@/public/images/sun.svg"
 
-const ThemeToggle = () => {
-  const [theme, setTheme] = useState('dark');
+const ThemeToggle = ( { theme, setTheme }: { theme: any, setTheme: any } ) => {
 
   useEffect(() => {
     if (theme === 'light') {
@@ -16,7 +15,7 @@ const ThemeToggle = () => {
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === 'dark' ? 'light' : 'dark'));
+    setTheme((prevTheme: any) => (prevTheme === 'dark' ? 'light' : 'dark'));
   };
 
   return (

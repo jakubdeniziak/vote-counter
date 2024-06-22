@@ -6,7 +6,7 @@ import VoteSetup from "./setup/VoteSetup";
 import VoteInProgress from "./inprogress/VoteInProgress"
 import BeforeUnloadHandler from "./BeforeUnloadHandler";
 
-const Main = () => {
+const Main = ( { theme }: { theme: any }) => {
     const [voteData, setVoteData] = useState({
         isSetUp: false,
         isSaved: false,
@@ -38,6 +38,7 @@ const Main = () => {
                 setVoteData={setVoteData}
                 candidates={candidates}
                 setCandidates={setCandidates}
+                theme={theme}
             /> 
         }
         </main>

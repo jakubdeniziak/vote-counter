@@ -2,7 +2,8 @@ import Candidates from "./Candidates";
 import VoteSummary from "./VoteSummary";
 import ManageVote from "./ManageVote";
 
-const VoteInProgress = ({voteData, setVoteData, candidates, setCandidates }: {voteData: any, setVoteData: any, candidates: any, setCandidates: any }) => {
+const VoteInProgress = ({voteData, setVoteData, candidates, setCandidates, theme }:
+    {voteData: any, setVoteData: any, candidates: any, setCandidates: any, theme: any }) => {
     
     const calculateVotesNeededToWin = () => {
         if (voteData.numberOfVoters && voteData.percentageNeededToWin) {
@@ -25,6 +26,7 @@ const VoteInProgress = ({voteData, setVoteData, candidates, setCandidates }: {vo
                 voteData={voteData}
                 votesToWin={votesNeededToWin}
                 candidates={candidates}
+                theme={theme}
             />
             <ManageVote
                 voteData={voteData}

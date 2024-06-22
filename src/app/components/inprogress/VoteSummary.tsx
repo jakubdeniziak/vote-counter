@@ -1,9 +1,7 @@
 import * as React from 'react';
-
 import { PieChart } from '@mui/x-charts/PieChart';
 
-const VoteSummary = ({ voteData, votesToWin, candidates }
-    : { voteData: any, votesToWin: any, candidates: any }) => {
+const VoteSummary = ({ voteData, votesToWin, candidates, theme }: { voteData: any, votesToWin: any, candidates: any, theme: any }) => {
 
     const showPieChart = voteData.votesCounted > 0;
     const pieData = {
@@ -13,10 +11,8 @@ const VoteSummary = ({ voteData, votesToWin, candidates }
             label: candidate.name
         }))
     };
-
     const winners = candidates ? candidates.filter((candidate: any) => candidate.votes >= votesToWin) : [];
     const allVotesCounted = voteData.votesCounted == voteData.numberOfVoters * voteData.votesPerVoter;
-
 
     return (
         <section className="mt-5 text-center">
@@ -45,7 +41,7 @@ const VoteSummary = ({ voteData, votesToWin, candidates }
                     slotProps={{
                         legend: {
                             labelStyle: {
-                                // fill: theme === 'dark' ? 'white' : 'black',
+                                fill: theme === 'dark' ? 'white' : 'black',
                             },
                         },
                     }}
