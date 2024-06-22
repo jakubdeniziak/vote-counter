@@ -8,12 +8,12 @@ import VoteInProgress from "./inprogress/VoteInProgress"
 const Main = () => {
     const [voteData, setVoteData] = useState({
         title: "",
-        numberOfVoters: null
+        numberOfVoters: null,
+        percentageNeededToWin: null
     });
 
     const [isSetUp, setIsSetUp] = useState(false);
     const [totalVotes, setTotalVotes] = useState(0);
-    const [percentageNeededToWin, setPercentageNeededToWin] = useState(null);
     const [isSaved, setIsSaved] = useState(false);
     const [votesPerVoter, setVotesPerVoter] = useState(1);
     const [candidates, setCandidates] = useState([
@@ -26,10 +26,10 @@ const Main = () => {
     const resetVote = () => {
         setVoteData({
             title: "",
-            numberOfVoters: null
+            numberOfVoters: null,
+            percentageNeededToWin: null
         })
         setTotalVotes(0);
-        setPercentageNeededToWin(null);
         setVotesPerVoter(1);
         setCandidates([
             { name: 'INVALID VOTE', votes: 0 },
@@ -59,8 +59,6 @@ const Main = () => {
             <VoteSetup
                 voteData={voteData}
                 setVoteData={setVoteData}
-                percentageToWin={percentageNeededToWin}
-                setPercentageNeededToWin={setPercentageNeededToWin}
                 setIsSetUp={setIsSetUp}
                 resetVote={resetVote}
                 candidates={candidates}
@@ -77,7 +75,7 @@ const Main = () => {
                 candidates={candidates}
                 setCandidates={setCandidates}
                 votesPerVoter={votesPerVoter}
-                percentageNeededToWin={percentageNeededToWin}
+                percentageNeededToWin={voteData.percentageNeededToWin}
                 resetVote={resetVote}
                 isSaved={isSaved}
                 setIsSaved={setIsSaved}

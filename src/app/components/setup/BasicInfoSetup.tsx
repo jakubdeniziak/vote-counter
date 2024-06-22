@@ -1,17 +1,13 @@
 import React, { Dispatch } from 'react';
 
-const BasicInfo = ({ setVoteData, percentageToWin, setPercentageNeededToWin }:
-    { setVoteData: Dispatch<any>, percentageToWin: number, setPercentageNeededToWin: Dispatch<number> }
+const BasicInfo = ({ setVoteData }:
+    { setVoteData: Dispatch<any> }
 ) => {
     const handleChange = (e: any) => {
         const {name, value} = e.target;
         setVoteData((prev: any) => {
             return {...prev, [name]: value}
         });
-    };
-
-    const handlePercentageChange = (e: any) => {
-        setPercentageNeededToWin(e.target.value);
     };
 
     return (
@@ -42,8 +38,8 @@ const BasicInfo = ({ setVoteData, percentageToWin, setPercentageNeededToWin }:
                 <input
                     type="number"
                     id="percentageToWin"
-                    value={percentageToWin}
-                    onChange={handlePercentageChange}
+                    name="percentageNeededToWin"
+                    onChange={handleChange}
                     className="text-primary border p-2 mr-2 w-80 mb-2"
                 />
             </div>
