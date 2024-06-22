@@ -3,9 +3,8 @@ import BasicInfo from './BasicInfoSetup';
 import AdvancedSettings from './AdvancedSettingsSetup';
 import CandidatesSetup from './CandidatesSetup';
 
-const VoteSetup = ({ setVoteData, candidates, setCandidates }
-    : { setVoteData: any, candidates: any, setCandidates: any }
-) => {
+const VoteSetup = ({ setVoteData, candidates, setCandidates }: { setVoteData: any, candidates: any, setCandidates: any }) => {
+    
     const [singleVotePerVoter, setSingleVotePerVoter] = useState(true);
     const [multipleVotesPerVoter, setMultipleVotesPerVoter] = useState(false);
 

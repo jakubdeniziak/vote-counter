@@ -3,6 +3,7 @@ import React, { Dispatch } from 'react';
 const AdvancedSettings = ({ setVoteData, singleVotePerVoter, multipleVotesPerVoter, setSingleVotePerVoter, setMultipleVotesPerVoter }: 
     { setVoteData: any, singleVotePerVoter: boolean, multipleVotesPerVoter: boolean, setSingleVotePerVoter: Dispatch<boolean>, setMultipleVotesPerVoter: Dispatch<boolean> }
 ) => {
+    
     const handleChange = (e: any) => {
         const {name, value} = e.target;
         setVoteData((prev: any) => {

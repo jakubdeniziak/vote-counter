@@ -1,8 +1,7 @@
 import React, { Dispatch, useState } from 'react';
 
-const CandidatesSetup = ({candidates, setCandidates}: 
-    { candidates: Array<any>, setCandidates: Dispatch<Array<any>> }
-) => {
+const CandidatesSetup = ({candidates, setCandidates}: { candidates: Array<any>, setCandidates: Dispatch<Array<any>> }) => {
+    
     const [newCandidateName, setNewCandidateName] = useState('');
 
     const handleNewCandidateChange = (e: any) => {

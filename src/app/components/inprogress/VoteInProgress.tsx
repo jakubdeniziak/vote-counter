@@ -3,6 +3,7 @@ import VoteSummary from "./VoteSummary";
 import ManageVote from "./ManageVote";
 
 const VoteInProgress = ({voteData, setVoteData, candidates, setCandidates }: {voteData: any, setVoteData: any, candidates: any, setCandidates: any }) => {
+    
     const calculateVotesNeededToWin = () => {
         if (voteData.numberOfVoters && voteData.percentageNeededToWin) {
             return Math.ceil((voteData.percentageNeededToWin / 100) * voteData.numberOfVoters);

@@ -1,6 +1,7 @@
 import React, { Dispatch } from 'react';
 
 const BasicInfo = ({ setVoteData }: { setVoteData: Dispatch<any> }) => {
+    
     const handleChange = (e: any) => {
         const {name, value} = e.target;
         setVoteData((prev: any) => {

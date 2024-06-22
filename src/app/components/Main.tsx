@@ -20,22 +20,6 @@ const Main = () => {
         { name: 'INVALID VOTE', votes: 0 },
         { name: 'Blank', votes: 0 },
     ]);
-  
-    const resetVote = () => {
-        setVoteData({
-            isSetUp: false,
-            isSaved: false,
-            title: "",
-            numberOfVoters: null,
-            percentageNeededToWin: null,
-            votesPerVoter: 1,
-            votesCounted: 0
-        })
-        setCandidates([
-            { name: 'INVALID VOTE', votes: 0 },
-            { name: 'Blank', votes: 0 },
-        ]);
-    };
 
     return (
         <main className="mb-24 text-center">
