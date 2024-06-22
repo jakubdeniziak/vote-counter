@@ -1,21 +1,26 @@
 import React, { Dispatch } from 'react';
 
-const AdvancedSettings = ({ singleVotePerVoter, multipleVotesPerVoter, votesPerVoter, setVotesPerVoter, setSingleVotePerVoter, setMultipleVotesPerVoter }: 
-    { singleVotePerVoter: boolean, multipleVotesPerVoter: boolean, votesPerVoter: number, setVotesPerVoter: Dispatch<number>, setSingleVotePerVoter: Dispatch<boolean>, setMultipleVotesPerVoter: Dispatch<boolean> }
+const AdvancedSettings = ({ setVoteData, singleVotePerVoter, multipleVotesPerVoter, setSingleVotePerVoter, setMultipleVotesPerVoter }: 
+    { setVoteData: any, singleVotePerVoter: boolean, multipleVotesPerVoter: boolean, setSingleVotePerVoter: Dispatch<boolean>, setMultipleVotesPerVoter: Dispatch<boolean> }
 ) => {
+    const handleChange = (e: any) => {
+        const {name, value} = e.target;
+        setVoteData((prev: any) => {
+            return {...prev, [name]: value}
+        });
+    };
+
     const handleSingleVoteChange = () => {
         setSingleVotePerVoter(true);
         setMultipleVotesPerVoter(false);
-        setVotesPerVoter(1);
+        setVoteData((prev: any) => {
+            return {...prev, ['votesPerVoter']: 1}
+        });
     };
 
     const handleMultipleVotesChange = () => {
         setSingleVotePerVoter(false);
         setMultipleVotesPerVoter(true);
-    };
-
-    const handleVotesPerVoterChange = (e: any) => {
-        setVotesPerVoter(e.target.value);
     };
 
     return (
@@ -50,8 +55,8 @@ const AdvancedSettings = ({ singleVotePerVoter, multipleVotesPerVoter, votesPerV
                         Number of votes per voter
                         <input
                             type="number"
-                            value={votesPerVoter}
-                            onChange={handleVotesPerVoterChange}
+                            name="votesPerVoter"
+                            onChange={handleChange}
                             className="text-primary border p-2 ml-2 w-40"
                         />
                     </label>

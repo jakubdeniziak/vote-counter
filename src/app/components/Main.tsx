@@ -9,13 +9,13 @@ const Main = () => {
     const [voteData, setVoteData] = useState({
         title: "",
         numberOfVoters: null,
-        percentageNeededToWin: null
+        percentageNeededToWin: null,
+        votesPerVoter: 1
     });
 
     const [isSetUp, setIsSetUp] = useState(false);
     const [totalVotes, setTotalVotes] = useState(0);
     const [isSaved, setIsSaved] = useState(false);
-    const [votesPerVoter, setVotesPerVoter] = useState(1);
     const [candidates, setCandidates] = useState([
         { name: 'INVALID VOTE', votes: 0 },
         { name: 'Blank', votes: 0 },
@@ -27,10 +27,10 @@ const Main = () => {
         setVoteData({
             title: "",
             numberOfVoters: null,
-            percentageNeededToWin: null
+            percentageNeededToWin: null,
+            votesPerVoter: 1
         })
         setTotalVotes(0);
-        setVotesPerVoter(1);
         setCandidates([
             { name: 'INVALID VOTE', votes: 0 },
             { name: 'Blank', votes: 0 },
@@ -57,14 +57,11 @@ const Main = () => {
         <main className="mb-24 text-center">
         {isSetUp === false ?
             <VoteSetup
-                voteData={voteData}
                 setVoteData={setVoteData}
                 setIsSetUp={setIsSetUp}
                 resetVote={resetVote}
                 candidates={candidates}
                 setCandidates={setCandidates}
-                votesPerVoter={votesPerVoter}
-                setVotesPerVoter={setVotesPerVoter}
             />
         :
             <VoteInProgress
@@ -74,7 +71,7 @@ const Main = () => {
                 setTotalVotes={setTotalVotes}
                 candidates={candidates}
                 setCandidates={setCandidates}
-                votesPerVoter={votesPerVoter}
+                votesPerVoter={voteData.votesPerVoter}
                 percentageNeededToWin={voteData.percentageNeededToWin}
                 resetVote={resetVote}
                 isSaved={isSaved}
