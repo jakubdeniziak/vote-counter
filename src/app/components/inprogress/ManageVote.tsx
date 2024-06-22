@@ -1,31 +1,10 @@
-const ManageVote = ({ voteData, setVoteData, candidates }: { voteData: any, setVoteData: any, candidates: any }) => {
-    const serializeVoteData = () => {
-        return JSON.stringify({
-            voteData,
-            candidates,
-        }, null, 2);
-    };
+import DataSaver from "../DataSaver";
 
-    const saveVoteData = () => {
-        const jsonData = serializeVoteData();
-        const blob = new Blob([jsonData], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `${voteData.title}.json`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-        setVoteData((prev: any) => {
-            return {...prev, ['isSaved']: true}
-        });
-    };
+const ManageVote = ({ voteData, setVoteData, candidates }: { voteData: any, setVoteData: any, candidates: any }) => {
 
     const handleResetVote = () => {
         window.location.reload();
     };
-
 
     return (
         <section className="mt-5 text-center">
@@ -36,12 +15,11 @@ const ManageVote = ({ voteData, setVoteData, candidates }: { voteData: any, setV
             >
                 Reset vote
             </button>
-            <button
-                onClick={saveVoteData}
-                className="bg-accent text-secondary px-4 py-2 rounded ml-2"
-            >
-                Save vote data
-            </button>
+            <DataSaver
+                voteData={voteData}
+                candidates={candidates}
+                setVoteData={setVoteData}
+            />
         </section>
     )
 }
