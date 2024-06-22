@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import VoteSetup from "./setup/VoteSetup";
 import VoteInProgress from "./inprogress/VoteInProgress"
+import BeforeUnloadHandler from "./BeforeUnloadHandler";
 
 const Main = () => {
     const [voteData, setVoteData] = useState({
@@ -15,7 +16,6 @@ const Main = () => {
         votesPerVoter: 1,
         votesCounted: 0
     });
-
     const [candidates, setCandidates] = useState([
         { name: 'INVALID VOTE', votes: 0 },
         { name: 'Blank', votes: 0 },
@@ -36,25 +36,12 @@ const Main = () => {
             { name: 'Blank', votes: 0 },
         ]);
     };
-  
-    useEffect(() => {
-        const handleBeforeUnload = (event: BeforeUnloadEvent) => {
-            if (!voteData.isSaved) {
-                event.preventDefault();
-                event.returnValue = '';
-            }
-        };
-  
-        window.addEventListener('beforeunload', handleBeforeUnload);
-  
-        return () => {
-            window.removeEventListener('beforeunload', handleBeforeUnload);
-        };
-    }, [voteData.isSaved]);
-
 
     return (
         <main className="mb-24 text-center">
+        <BeforeUnloadHandler
+            isVoteSaved={voteData.isSaved}
+        />
         {voteData.isSetUp === false ?
             <VoteSetup
                 setVoteData={setVoteData}
