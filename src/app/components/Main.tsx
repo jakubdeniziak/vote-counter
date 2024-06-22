@@ -3,9 +3,7 @@
 import { useState, useEffect } from "react";
 
 import VoteSetup from "./VoteSetup";
-import Candidates from "./Candidates";
-import VoteSummary from "./VoteSummary";
-import ManageVote from "./ManageVote";
+import VoteInProgress from "./VoteInProgress"
 
 
 const Main = () => {
@@ -75,36 +73,21 @@ const Main = () => {
             setVotesPerVoter={setVotesPerVoter}
           />
           :
-          <div>
-            <h2 className='text-3xl mt-5'>{voteTitle}</h2>
-            <Candidates
-              votesNeededToWin={votesNeededToWin}
-              numPeople={numberOfPeople}
-              totalVotes={totalVotes}
-              setTotalVotes={setTotalVotes}
-              candidates={candidates}
-              setCandidates={setCandidates}
-              votesPerVoter={Number(votesPerVoter)}
-            />
-            <VoteSummary
-              totalVotes={totalVotes}
-              numPeople={numberOfPeople}
-              votesToWin={votesNeededToWin}
-              candidates={candidates}
-              votesPerVoter={votesPerVoter}
-            />
-            <ManageVote
-              voteTitle={voteTitle}
-              numberOfPeople={numberOfPeople}
-              percentageNeededToWin={percentageNeededToWin}
-              candidates={candidates}
-              resetVote={resetVote}
-              isSaved={isSaved}
-              setIsSaved={setIsSaved}
-              setIsSetUp={setIsSetUp}
-              votesPerVoter={votesPerVoter}
-            />
-          </div>
+          <VoteInProgress
+            voteTitle={voteTitle}
+            votesNeededToWin={votesNeededToWin}
+            numberOfPeople={numberOfPeople}
+            totalVotes={totalVotes}
+            setTotalVotes={setTotalVotes}
+            candidates={candidates}
+            setCandidates={setCandidates}
+            votesPerVoter={votesPerVoter}
+            percentageNeededToWin={percentageNeededToWin}
+            resetVote={resetVote}
+            isSaved={isSaved}
+            setIsSaved={setIsSaved}
+            setIsSetUp={setIsSetUp}
+          /> 
         }
       </main>
     )
