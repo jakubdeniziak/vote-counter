@@ -45,7 +45,6 @@ const Main = () => {
         {voteData.isSetUp === false ?
             <VoteSetup
                 setVoteData={setVoteData}
-                resetVote={resetVote}
                 candidates={candidates}
                 setCandidates={setCandidates}
             />
@@ -55,7 +54,6 @@ const Main = () => {
                 setVoteData={setVoteData}
                 candidates={candidates}
                 setCandidates={setCandidates}
-                resetVote={resetVote}
             /> 
         }
         </main>

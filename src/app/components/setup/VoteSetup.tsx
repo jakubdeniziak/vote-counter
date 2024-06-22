@@ -3,8 +3,8 @@ import BasicInfo from './BasicInfoSetup';
 import AdvancedSettings from './AdvancedSettingsSetup';
 import CandidatesSetup from './CandidatesSetup';
 
-const VoteSetup = ({ setVoteData, resetVote, candidates, setCandidates }
-    : { setVoteData: any, resetVote: any, candidates: any, setCandidates: any }
+const VoteSetup = ({ setVoteData, candidates, setCandidates }
+    : { setVoteData: any, candidates: any, setCandidates: any }
 ) => {
     const [singleVotePerVoter, setSingleVotePerVoter] = useState(true);
     const [multipleVotesPerVoter, setMultipleVotesPerVoter] = useState(false);
@@ -17,9 +17,7 @@ const VoteSetup = ({ setVoteData, resetVote, candidates, setCandidates }
     };
 
     const handleVoteReset = () => {
-        resetVote();
-        setSingleVotePerVoter(true);
-        setMultipleVotesPerVoter(false);
+        window.location.reload();
     }
 
     return (

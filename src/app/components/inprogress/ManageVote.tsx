@@ -1,8 +1,4 @@
-import { useState } from "react";
-
-const ManageVote = ({ voteData, setVoteData, candidates, resetVote }: { voteData: any, setVoteData: any, candidates: any, resetVote: any }) => {
-    const [showWarning, setShowWarning] = useState(false);
-    
+const ManageVote = ({ voteData, setVoteData, candidates }: { voteData: any, setVoteData: any, candidates: any }) => {
     const serializeVoteData = () => {
         return JSON.stringify({
             voteData,
@@ -24,23 +20,16 @@ const ManageVote = ({ voteData, setVoteData, candidates, resetVote }: { voteData
         setVoteData((prev: any) => {
             return {...prev, ['isSaved']: true}
         });
-        setShowWarning(false);
     };
 
     const handleResetVote = () => {
-        if (!voteData.isSaved && !showWarning) {
-            setShowWarning(true);
-        } else {
-            resetVote();
-            setShowWarning(false);
-        }
+        window.location.reload();
     };
 
 
     return (
         <section className="mt-5 text-center">
             <h2 className="text-2xl font-semibold mb-3">Manage</h2>
-            {showWarning && <p className="text-red-500 mb-3">Unsaved data will be lost. Please confirm reset.</p>}
             <button
                 onClick={handleResetVote}
                 className="bg-red-500 text-secondary px-4 py-2 rounded mr-2"
