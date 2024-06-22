@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react";
 
-import VoteSetup from "./VoteSetup";
-import VoteInProgress from "./VoteInProgress"
+import VoteSetup from "./setup/VoteSetup";
+import VoteInProgress from "./inprogress/VoteInProgress"
 
 const Main = () => {
     const [isSetUp, setIsSetUp] = useState(false);
