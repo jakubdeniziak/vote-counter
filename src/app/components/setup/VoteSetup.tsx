@@ -1,18 +1,13 @@
 import { useState } from 'react';
+import BasicInfo from './BasicInfo';
 
 const VoteSetup = ({ voteTitle, setVoteTitle, numberOfPeople, setNumberOfPeople, percentageToWin, setPercentageNeededToWin, setIsSetUp, resetVote, candidates, setCandidates, votesPerVoter, setVotesPerVoter }
-    : { voteTitle: any, setVoteTitle: any, numberOfPeople: any, setNumberOfPeople: any, percentageToWin: any, setPercentageNeededToWin: any, setIsSetUp: any, resetVote: any, candidates: any, setCandidates: any, votesPerVoter: any, setVotesPerVoter: any }) => {
-    
-    
+    : { voteTitle: any, setVoteTitle: any, numberOfPeople: any, setNumberOfPeople: any, percentageToWin: any, setPercentageNeededToWin: any, setIsSetUp: any, resetVote: any, candidates: any, setCandidates: any, votesPerVoter: any, setVotesPerVoter: any }
+) => {
     const [inputValue, setInputValue] = useState(voteTitle);
     const [newCandidateName, setNewCandidateName] = useState('');
     const [singleVotePerVoter, setSingleVotePerVoter] = useState(true);
     const [multipleVotesPerVoter, setMultipleVotesPerVoter] = useState(false);
-
-
-    const handleInputChange = (e: any) => {
-        setInputValue(e.target.value);
-    };
 
     const handleVoteSetUp = () => {
         setVoteTitle(inputValue);
@@ -27,14 +22,6 @@ const VoteSetup = ({ voteTitle, setVoteTitle, numberOfPeople, setNumberOfPeople,
         setSingleVotePerVoter(true);
         setMultipleVotesPerVoter(false);
     }
-
-    const handleNumberOfPeopleChange = (e: any) => {
-        setNumberOfPeople(e.target.value);
-    };
-
-    const handlePercentageChange = (e: any) => {
-        setPercentageNeededToWin(e.target.value);
-    };
 
     const handleSingleVoteChange = () => {
         setSingleVotePerVoter(true);
@@ -71,39 +58,14 @@ const VoteSetup = ({ voteTitle, setVoteTitle, numberOfPeople, setNumberOfPeople,
 
     return (
         <div className='text-center'>
-            <section className="text-center mt-10">
-                <h2 className="text-2xl font-semibold mb-3">Basic info</h2>
-                <div className="mb-4">
-                    <label htmlFor="voteTitle" className="block text-xl mb-2">Vote Title</label>
-                    <input
-                        type="text"
-                        id="voteTitle"
-                        value={inputValue}
-                        onChange={handleInputChange}
-                        className="text-primary border p-2 mr-2 w-80"
-                    />
-                </div>
-                <div>
-                    <label htmlFor="numberOfPeople" className="block text-xl mb-2">Number of people eligible to vote</label>
-                    <input
-                        type="number"
-                        id="numberOfPeople"
-                        value={numberOfPeople}
-                        onChange={handleNumberOfPeopleChange}
-                        className="text-primary border p-2 mr-2 mb-4 w-80"
-                    />
-                </div>
-                <div>
-                    <label htmlFor="percentageToWin" className="block text-xl mb-2">Percentage of votes needed to win</label>
-                    <input
-                            type="number"
-                            id="percentageToWin"
-                            value={percentageToWin}
-                            onChange={handlePercentageChange}
-                            className="text-primary border p-2 mr-2 w-80 mb-2"
-                    />
-                </div>
-            </section>
+            <BasicInfo
+                inputValue={inputValue}
+                setInputValue={setInputValue}
+                numberOfPeople={numberOfPeople}
+                setNumberOfPeople={setNumberOfPeople}
+                percentageToWin={percentageToWin}
+                setPercentageNeededToWin={setPercentageNeededToWin}
+            />
             <section className="mt-8">
                 <h2 className="text-2xl font-semibold mb-3">Advanced settings</h2>
                 <div className="mb-4">
