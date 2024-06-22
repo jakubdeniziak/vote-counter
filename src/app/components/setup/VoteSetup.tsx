@@ -3,14 +3,17 @@ import BasicInfo from './BasicInfoSetup';
 import AdvancedSettings from './AdvancedSettingsSetup';
 import CandidatesSetup from './CandidatesSetup';
 
-const VoteSetup = ({ setVoteData, setIsSetUp, resetVote, candidates, setCandidates }
-    : { setVoteData: any, setIsSetUp: any, resetVote: any, candidates: any, setCandidates: any }
+const VoteSetup = ({ setVoteData, resetVote, candidates, setCandidates }
+    : { setVoteData: any, resetVote: any, candidates: any, setCandidates: any }
 ) => {
     const [singleVotePerVoter, setSingleVotePerVoter] = useState(true);
     const [multipleVotesPerVoter, setMultipleVotesPerVoter] = useState(false);
 
-    const handleVoteSetUp = () => {
-        setIsSetUp(true);
+    const handleChange = (e: any) => {
+        const {name, value} = e.target;
+        setVoteData((prev: any) => {
+            return {...prev, [name]: value}
+        });
     };
 
     const handleVoteReset = () => {
@@ -43,7 +46,8 @@ const VoteSetup = ({ setVoteData, setIsSetUp, resetVote, candidates, setCandidat
                     Reset
                 </button>
                 <button
-                    onClick={handleVoteSetUp}
+                    onClick={handleChange}
+                    name="isSetUp"
                     className="bg-accent text-secondary p-2 rounded"
                 >
                     Accept

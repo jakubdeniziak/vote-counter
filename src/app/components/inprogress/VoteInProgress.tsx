@@ -2,8 +2,8 @@ import Candidates from "./Candidates";
 import VoteSummary from "./VoteSummary";
 import ManageVote from "./ManageVote";
 
-const VoteInProgress = ({voteTitle, numberOfPeople, totalVotes, setTotalVotes, candidates, setCandidates, votesPerVoter, percentageNeededToWin, resetVote, isSaved, setIsSaved, setIsSetUp}
-    : {voteTitle: any, numberOfPeople: any, totalVotes: any, setTotalVotes: any, candidates: any, setCandidates: any, votesPerVoter: any, percentageNeededToWin: any, resetVote: any, isSaved: any, setIsSaved: any, setIsSetUp: any}
+const VoteInProgress = ({voteTitle, numberOfPeople, totalVotes, setTotalVotes, candidates, setCandidates, votesPerVoter, percentageNeededToWin, resetVote, isSaved, setIsSaved}
+    : {voteTitle: any, numberOfPeople: any, totalVotes: any, setTotalVotes: any, candidates: any, setCandidates: any, votesPerVoter: any, percentageNeededToWin: any, resetVote: any, isSaved: any, setIsSaved: any}
 ) => {
 
     const calculateVotesNeededToWin = () => {
@@ -41,7 +41,6 @@ const VoteInProgress = ({voteTitle, numberOfPeople, totalVotes, setTotalVotes, c
                 resetVote={resetVote}
                 isSaved={isSaved}
                 setIsSaved={setIsSaved}
-                setIsSetUp={setIsSetUp}
                 votesPerVoter={votesPerVoter}
             />
         </>
