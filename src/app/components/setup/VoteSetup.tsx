@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import BasicInfo from './BasicInfoSetup';
 import AdvancedSettings from './AdvancedSettingsSetup';
-import CandidatesSetup from './CandidatesSetup';
+import CandidatesSetup from './candidates/CandidatesSetup';
 
 const VoteSetup = ({ setVoteData, candidates, setCandidates }: { setVoteData: any, candidates: any, setCandidates: any }) => {
     
