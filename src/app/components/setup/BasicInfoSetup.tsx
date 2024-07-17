@@ -29,6 +29,7 @@ const BasicInfo = ({ setVoteData }: { setVoteData: Dispatch<any> }) => {
                     id="numberOfPeople"
                     name="numberOfVoters"
                     onChange={handleChange}
+                    min={0}
                     className="text-primary border p-2 mr-2 mb-4 w-80"
                 />
             </div>
@@ -39,6 +40,7 @@ const BasicInfo = ({ setVoteData }: { setVoteData: Dispatch<any> }) => {
                     id="percentageToWin"
                     name="percentageNeededToWin"
                     onChange={handleChange}
+                    min={0}
                     className="text-primary border p-2 mr-2 w-80 mb-2"
                 />
             </div>
