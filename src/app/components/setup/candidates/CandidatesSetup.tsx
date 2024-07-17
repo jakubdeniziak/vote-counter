@@ -31,7 +31,10 @@ const CandidatesSetup = ({candidates, setCandidates}: { candidates: Array<any>, 
                 </button>
             </div>
             { candidateAdditionMode === "nominations" && (
-                <Nominations/>
+                <Nominations
+                    candidates={candidates}
+                    setCandidates={setCandidates}
+                />
             )}
             { candidateAdditionMode === "known" && (
                 <KnownCandidates
