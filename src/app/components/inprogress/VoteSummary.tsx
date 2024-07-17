@@ -3,7 +3,7 @@ import { PieChart } from '@mui/x-charts/PieChart';
 
 const VoteSummary = ({ voteData, votesToWin, candidates, theme }: { voteData: any, votesToWin: any, candidates: any, theme: any }) => {
 
-    const showPieChart = voteData.votesCounted > 0;
+    const showPieChart = voteData.votesCounted > 0 && voteData.votesPerVoter == 1;
     const pieData = {
         data: candidates.map((candidate: any, index: any) => ({
             id: index,
