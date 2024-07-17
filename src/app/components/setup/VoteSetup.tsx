@@ -2,6 +2,7 @@ import { useState } from 'react';
 import BasicInfo from './BasicInfoSetup';
 import AdvancedSettings from './AdvancedSettingsSetup';
 import CandidatesSetup from './CandidatesSetup';
+import DataLoader from '../DataLoader';
 
 const VoteSetup = ({ setVoteData, candidates, setCandidates }: { setVoteData: any, candidates: any, setCandidates: any }) => {
     
@@ -36,6 +37,10 @@ const VoteSetup = ({ setVoteData, candidates, setCandidates }: { setVoteData: an
                 setCandidates={setCandidates}
             />
             <div className="mt-12">
+                <DataLoader
+                    setVoteData={setVoteData}
+                    setCandidates={setCandidates}
+                />
                 <button
                     onClick={handleVoteReset}
                     className="bg-accent2 text-secondary p-2 rounded mr-8"
