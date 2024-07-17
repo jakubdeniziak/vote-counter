@@ -58,6 +58,8 @@ const AdvancedSettings = ({ setVoteData, singleVotePerVoter, multipleVotesPerVot
                             type="number"
                             name="votesPerVoter"
                             onChange={handleChange}
+                            min={0}
+                            onWheel={(e) => e.currentTarget.blur()}
                             className="text-primary border p-2 ml-2 w-40"
                         />
                     </label>
