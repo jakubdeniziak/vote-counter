@@ -12,7 +12,6 @@ const Candidates = ({ voteData, setVoteData, candidates, setCandidates, votesNee
             return {...prev, ['votesCounted']: totalCandidateVotes}
         });
 
-
         if (totalCandidateVotes > voteData.numberOfVoters * voteData.votesPerVoter) {
             setWarning("There should be no more votes left");
         } else {
@@ -29,11 +28,11 @@ const Candidates = ({ voteData, setVoteData, candidates, setCandidates, votesNee
         const newCandidates = [...candidates];
 
         if (newCandidates[index].name == "INVALID VOTE") {
-            if (voteData.votesCounted + voteData.votesPerVoter > voteData.numberOfVoters * voteData.votesPerVoter) {
-                setWarning("There should be no more votes left");
+            if (voteData.votesCounted + Number(voteData.votesPerVoter) > voteData.numberOfVoters * voteData.votesPerVoter) {
+                setWarning("Part of the invalid vote must have been counted");
                 return;
             }
-            newCandidates[index].votes += voteData.votesPerVoter;
+            newCandidates[index].votes += Number(voteData.votesPerVoter);
         } else {
             newCandidates[index].votes += 1;
         }        
